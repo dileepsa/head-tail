@@ -107,10 +107,12 @@
     },
     {
       "files": [
-        "head.js"
+        "head.js",
+        "test*"
       ],
       "rules": {
-        "no-console": "off"
+        "no-console": "off",
+        "max-len": "off"
       }
     }
   ]

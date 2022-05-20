@@ -1,10 +1,13 @@
 **WORKING:**
 
 **TODO:**
+- [ ] Make head work for one file.
+- [ ] Add main in `head.js`.
+- [ ] Create a headMain that deals with files.
+- [ ] while parsing `args` decide the separator.
+- [ ] Make a richer structure while parsing.
 - [ ] Dont work on files at start instead work on content of file.
 - [ ] Make head work upto `10` lines.
-- [ ] Create a function that takes lines,bytes and returns characters of bytes.
-- [ ] Create a headMain that deals with files.
 
 **MUST:**
 - [ ] Review code after function becomes 4 lines.
@@ -12,6 +15,7 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Change the contract of `head` to take separator.
 - [x] Send a separator to `splitLines` and `joinLines`.
 - [x] Move `splitLine` and `joinLines` to new file.
 - [x] Add tests for `splitLine` and `joinLines` .
