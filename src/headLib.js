@@ -9,6 +9,6 @@ const head = (content, { count, separator }) => {
 };
 
 exports.head = head;
-exports.extractLines = extract;
+exports.extract = extract;
 exports.splitLines = splitLines;
 exports.joinLines = joinLines;

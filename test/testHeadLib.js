@@ -1,6 +1,6 @@
 const assert = require('assert');
 const { head,
-  extractLines,
+  extract,
   splitLines,
   joinLines
 } = require('../src/headLib.js');
@@ -39,18 +39,18 @@ describe('head', () => {
 
 describe('extractLines', () => {
   it('Should give 1 line', () => {
-    assert.deepStrictEqual(extractLines(['hi'], 1), ['hi']);
-    assert.deepStrictEqual(extractLines(['hello'], 1), ['hello']);
+    assert.deepStrictEqual(extract(['hi'], 1), ['hi']);
+    assert.deepStrictEqual(extract(['hello'], 1), ['hello']);
   });
 
   it('Should return array back when count is greater than lines length', () => {
-    assert.deepStrictEqual(extractLines(['hi', 'bye'], 3), ['hi', 'bye']);
-    assert.deepStrictEqual(extractLines(['a', 'b', 'c'], 4), ['a', 'b', 'c']);
+    assert.deepStrictEqual(extract(['hi', 'bye'], 3), ['hi', 'bye']);
+    assert.deepStrictEqual(extract(['a', 'b', 'c'], 4), ['a', 'b', 'c']);
   });
 
   it('Should give 2 lines', () => {
-    assert.deepStrictEqual(extractLines(['hi', 'bye'], 2), ['hi', 'bye']);
-    assert.deepStrictEqual(extractLines(['hi', 'bye', 'h'], 2), ['hi', 'bye']);
+    assert.deepStrictEqual(extract(['hi', 'bye'], 2), ['hi', 'bye']);
+    assert.deepStrictEqual(extract(['hi', 'bye', 'h'], 2), ['hi', 'bye']);
   });
 });
 
@@ -75,4 +75,3 @@ describe('joinLines', () => {
     assert.deepStrictEqual(joinLines(['bye', 'hi'], '\n'), 'bye\nhi');
   });
 });
-

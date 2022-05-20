@@ -1,10 +1,10 @@
 **WORKING:**
+- [ ] Create a headMain that deals with files.
 
 **TODO:**
 - [ ] Make head work for one file.
 - [ ] Add main in `head.js`.
 - [ ] Decide the seperator in `headMain`.
-- [ ] Create a headMain that deals with files.
 - [ ] Dont work on files at start instead work on content of file.
 
 **MUST:**
