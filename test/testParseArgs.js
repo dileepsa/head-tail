@@ -15,4 +15,19 @@ describe('parseArgs', () => {
       separator: '\n'
     });
   });
+
+  it('Should parse for -c option', () => {
+    assert.deepStrictEqual(parseArgs(['-c', '2', 'wish.txt']), {
+      fileName: 'wish.txt',
+      count: 2,
+      separator: '',
+    });
+
+    assert.deepStrictEqual(parseArgs(['-c', '9', 'hello.txt']), {
+      fileName: 'hello.txt',
+      count: 9,
+      separator: '',
+    });
+  });
+
 });

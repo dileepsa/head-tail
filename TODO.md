@@ -4,7 +4,6 @@
 - [ ] Make head work for one file.
 - [ ] Add main in `head.js`.
 - [ ] Create a headMain that deals with files.
-- [ ] while parsing `args` decide the separator.
 - [ ] Make a richer structure while parsing.
 - [ ] Dont work on files at start instead work on content of file.
 - [ ] Make head work upto `10` lines.
@@ -15,6 +14,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] while parsing `args` decide the separator.
+- [x] Make `parseArgs` work for `-c` option.
 - [x] Make `parseArgs` work when one option is given.
 - [x] Create separate file for `parseArgs`.
 - [x] Change the contract of `head` to take separator.
