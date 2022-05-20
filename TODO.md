@@ -15,6 +15,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Make `parseArgs` work when one option is given.
+- [x] Create separate file for `parseArgs`.
 - [x] Change the contract of `head` to take separator.
 - [x] Send a separator to `splitLines` and `joinLines`.
 - [x] Move `splitLine` and `joinLines` to new file.
