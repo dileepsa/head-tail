@@ -1,10 +1,10 @@
 **WORKING:**
-- [ ] Create a headMain that deals with files.
 
 **TODO:**
 - [ ] Make head work for one file.
 - [ ] Add main in `head.js`.
-- [ ] Decide the seperator in `headMain`.
+- [ ] Change the contract of `head` to take variables.
+- [ ] Write a try catch in `headMain`.
 - [ ] Dont work on files at start instead work on content of file.
 
 **MUST:**
@@ -13,6 +13,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Decide the seperator in `headMain`.
+- [x] Create a headMain that deals with files.
 - [x] Make a richer structure while parsing.
 - [x] Change the `extractLines` funtion name.
 - [x] Change the contract of `parseArgs` to return without separator.
