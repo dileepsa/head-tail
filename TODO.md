@@ -3,6 +3,9 @@
 **TODO:**
 - [ ] Dont work on files at start instead work on content of file.
 - [ ] Make head work upto `10` lines.
+- [ ] Send a separator to `splitLines` and `joinLines`.
+- [ ] Move `splitLine` and `joinLines` to new file.
+- [ ] Create a function that takes lines,bytes and returns characters of bytes.
 - [ ] Create a headMain that deals with files.
 
 **MUST:**

@@ -16,12 +16,22 @@ describe('head', () => {
     assert.deepStrictEqual(head('hi\nhello\nbye', 3), 'hi\nhello\nbye');
     assert.deepStrictEqual(head('hi\nhello\nbye\nhi', 3), 'hi\nhello\nbye');
   });
+
+  it('Should give all lines when the count is greater than lines', () => {
+    assert.deepStrictEqual(head('hi\nhello', 3), 'hi\nhello');
+    assert.deepStrictEqual(head('hi\nhello\nbye', 4), 'hi\nhello\nbye');
+  });
 });
 
 describe('extractLines', () => {
   it('Should give 1 line', () => {
     assert.deepStrictEqual(extractLines(['hi'], 1), ['hi']);
     assert.deepStrictEqual(extractLines(['hello'], 1), ['hello']);
+  });
+
+  it('Should return array back when count is greater than lines length', () => {
+    assert.deepStrictEqual(extractLines(['hi', 'bye'], 3), ['hi', 'bye']);
+    assert.deepStrictEqual(extractLines(['a', 'b', 'c'], 4), ['a', 'b', 'c']);
   });
 
   it('Should give 2 lines', () => {
