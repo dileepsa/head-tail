@@ -3,7 +3,7 @@ const { parseArgs } = require('./parseArgs.js');
 
 const extract = (lines, count) => lines.slice(0, count);
 
-const head = (content, { count, separator }) => {
+const head = (content, count, separator) => {
   const allLines = splitLines(content, separator);
   const lines = extract(allLines, count);
   return joinLines(lines, separator);
@@ -16,7 +16,7 @@ const headMain = (readFile, args) => {
   if (optionName === '-c') {
     separator = '';
   }
-  return head(content, { count, separator });
+  return head(content, count, separator);
 };
 
 exports.head = head;

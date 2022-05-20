@@ -7,33 +7,33 @@ const { head,
 
 describe('head', () => {
   it('Should give 1 line', () => {
-    assert.deepStrictEqual(head('hi', { separator: '\n', count: 1 }), 'hi');
-    assert.deepStrictEqual(head('hello', { separator: '\n', count: 1 }), 'hello');
+    assert.deepStrictEqual(head('hi', 1, '\n'), 'hi');
+    assert.deepStrictEqual(head('hello', 1, '\n'), 'hello');
   });
 
   it('Should give 2 lines', () => {
-    assert.deepStrictEqual(head('hi\nhello', { separator: '\n', count: 2 }), 'hi\nhello');
-    assert.deepStrictEqual(head('hi\nhello\nbye', { separator: '\n', count: 2 }), 'hi\nhello');
+    assert.deepStrictEqual(head('hi\nhello', 2, '\n'), 'hi\nhello');
+    assert.deepStrictEqual(head('hi\nhello\nbye', 2, '\n'), 'hi\nhello');
   });
 
   it('Should give 3 lines', () => {
-    assert.deepStrictEqual(head('hi\nhello\nbye', { separator: '\n', count: 3 }), 'hi\nhello\nbye');
-    assert.deepStrictEqual(head('hi\nhello\nbye\nhi', { separator: '\n', count: 3 }), 'hi\nhello\nbye');
+    assert.deepStrictEqual(head('hi\nhello\nbye', 3, '\n'), 'hi\nhello\nbye');
+    assert.deepStrictEqual(head('hi\nhello\nbye\nhi', 3, '\n'), 'hi\nhello\nbye');
   });
 
   it('Should give 1 character', () => {
-    assert.deepStrictEqual(head('hi', { separator: '', count: 1 }), 'h');
-    assert.deepStrictEqual(head('bye', { separator: '', count: 1 }), 'b');
+    assert.deepStrictEqual(head('hi', 1, ''), 'h');
+    assert.deepStrictEqual(head('bye', 1, ''), 'b');
   });
 
   it('Should give 2 characters', () => {
-    assert.deepStrictEqual(head('hi', { separator: '', count: 2 }), 'hi');
-    assert.deepStrictEqual(head('bye', { separator: '', count: 2 }), 'by');
+    assert.deepStrictEqual(head('hi', 2, ''), 'hi');
+    assert.deepStrictEqual(head('bye', 2, ''), 'by');
   });
 
   it('Should give all lines when the count is greater than lines', () => {
-    assert.deepStrictEqual(head('hi\nhello', { separator: '\n', count: 3 }), 'hi\nhello');
-    assert.deepStrictEqual(head('hi\nhello\nbye', { separator: '\n', count: 4 }), 'hi\nhello\nbye');
+    assert.equal(head('hi\nhello', 3, '\n'), 'hi\nhello');
+    assert.equal(head('hi\nhello\nbye', 4, '\n'), 'hi\nhello\nbye');
   });
 });
 
