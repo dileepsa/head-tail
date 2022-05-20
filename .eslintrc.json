@@ -60,7 +60,7 @@
     "no-else-return": "error",
     "no-eval": "error",
     "no-implicit-globals": "error",
-    "prefer-const": "error",
+    "prefer-const": "warn",
     "no-magic-numbers": "off",
     "no-process-exit": "error",
     "no-process-env": "error",

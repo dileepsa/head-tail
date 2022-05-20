@@ -1,9 +1,9 @@
 **WORKING:**
-- [ ] Make a richer structure while parsing.
 
 **TODO:**
 - [ ] Make head work for one file.
 - [ ] Add main in `head.js`.
+- [ ] Decide the seperator in `headMain`.
 - [ ] Create a headMain that deals with files.
 - [ ] Dont work on files at start instead work on content of file.
 
@@ -13,6 +13,7 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Make a richer structure while parsing.
 - [x] Change the `extractLines` funtion name.
 - [x] Change the contract of `parseArgs` to return without separator.
 - [x] while parsing `args` decide the separator.
