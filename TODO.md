@@ -2,13 +2,10 @@
 - [ ] Make a richer structure while parsing.
 
 **TODO:**
-- [ ] Change the `extractLines` funtion name.
 - [ ] Make head work for one file.
 - [ ] Add main in `head.js`.
 - [ ] Create a headMain that deals with files.
 - [ ] Dont work on files at start instead work on content of file.
-- [ ] Set `number of lines` to 10 , when options are not specified.
-- [ ] Change the contract of `parseArgs` to return without separator.
 
 **MUST:**
 - [ ] Review code after function becomes 4 lines.
@@ -16,7 +13,10 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Change the `extractLines` funtion name.
+- [x] Change the contract of `parseArgs` to return without separator.
 - [x] while parsing `args` decide the separator.
+- [x] Set `number of lines` to 10 , when options are not specified.
 - [x] Make `parseArgs` work for `-c` option.
 - [x] Make `parseArgs` work when one option is given.
 - [x] Create separate file for `parseArgs`.
