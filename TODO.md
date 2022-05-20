@@ -1,8 +1,6 @@
 **WORKING:**
 
 **TODO:**
-- [ ] Make head work for one file.
-- [ ] Add main in `head.js`.
 - [ ] Write a try catch in `headMain`.
 - [ ] Dont work on files at start instead work on content of file.
 
@@ -12,6 +10,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Add main in `head.js`.
+- [x] Make head work for one file.
 - [x] Change the contract of `head` to take variables.
 - [x] Decide the seperator in `headMain`.
 - [x] Create a headMain that deals with files.

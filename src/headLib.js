@@ -9,13 +9,12 @@ const head = (content, count, separator) => {
   return joinLines(lines, separator);
 };
 
+const selectSeperator = (option) => option === '-c' ? '' : '\n';
+
 const headMain = (readFile, args) => {
   const { fileNames, optionName, count } = parseArgs(args);
   const content = readFile(fileNames[0], 'utf-8');
-  let separator = '\n';
-  if (optionName === '-c') {
-    separator = '';
-  }
+  const separator = selectSeperator(optionName);
   return head(content, count, separator);
 };
 
