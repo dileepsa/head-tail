@@ -1,12 +1,14 @@
 **WORKING:**
+- [ ] Make a richer structure while parsing.
 
 **TODO:**
+- [ ] Change the `extractLines` funtion name.
 - [ ] Make head work for one file.
 - [ ] Add main in `head.js`.
 - [ ] Create a headMain that deals with files.
-- [ ] Make a richer structure while parsing.
 - [ ] Dont work on files at start instead work on content of file.
-- [ ] Make head work upto `10` lines.
+- [ ] Set `number of lines` to 10 , when options are not specified.
+- [ ] Change the contract of `parseArgs` to return without separator.
 
 **MUST:**
 - [ ] Review code after function becomes 4 lines.

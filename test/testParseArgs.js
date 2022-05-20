@@ -30,4 +30,11 @@ describe('parseArgs', () => {
     });
   });
 
+  it('Should set default values when no option is specified', () => {
+    assert.deepStrictEqual(parseArgs(['wish.txt']), {
+      fileName: 'wish.txt',
+      count: 10,
+      separator: '\n'
+    });
+  });
 });

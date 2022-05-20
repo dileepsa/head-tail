@@ -1,9 +1,19 @@
+const isKeyPresent = (obj, key) => {
+  const allKeys = Object.keys(obj);
+  return allKeys.includes(key);
+};
+
 const parseArgs = (args) => {
-  const delimiterKeys = { '-n': '\n', '-c': '' };
-  const option = args[0];
-  const separator = delimiterKeys[option];
   const fileName = args[args.length - 1];
-  return { fileName, count: +args[1], separator };
+  const separatorKeys = { '-n': '\n', '-c': '' };
+  const option = args[0];
+  let separator = separatorKeys[option];
+  let count = +args[1];
+  if (!isKeyPresent(separatorKeys, option)) {
+    count = 10;
+    separator = '\n';
+  }
+  return { fileName, count, separator };
 };
 
 exports.parseArgs = parseArgs;
