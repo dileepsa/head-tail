@@ -1,5 +1,9 @@
 const assert = require('assert');
-const { head, extractLines } = require('../src/headLib.js');
+const { head,
+  extractLines,
+  splitLines,
+  joinLines
+} = require('../src/headLib.js');
 
 describe('head', () => {
   it('Should give 1 line', () => {
@@ -37,5 +41,27 @@ describe('extractLines', () => {
   it('Should give 2 lines', () => {
     assert.deepStrictEqual(extractLines(['hi', 'bye'], 2), ['hi', 'bye']);
     assert.deepStrictEqual(extractLines(['hi', 'bye', 'h'], 2), ['hi', 'bye']);
+  });
+});
+
+describe('splitLines', () => {
+  it('Should split data based on "|" ', () => {
+    assert.deepStrictEqual(splitLines('bye|hi', '|'), ['bye', 'hi']);
+    assert.deepStrictEqual(splitLines('hi|bye', '|'), ['hi', 'bye']);
+  });
+
+  it('Should split data based on new line ', () => {
+    assert.deepStrictEqual(splitLines('bye\nhi', '\n'), ['bye', 'hi']);
+    assert.deepStrictEqual(splitLines('hi\nbye', '\n'), ['hi', 'bye']);
+  });
+});
+
+describe('joinLines', () => {
+  it('Should join data based on "|" ', () => {
+    assert.deepStrictEqual(joinLines(['bye', 'hi'], '|'), 'bye|hi');
+  });
+
+  it('Should join data based on new line', () => {
+    assert.deepStrictEqual(joinLines(['bye', 'hi'], '\n'), 'bye\nhi');
   });
 });
