@@ -5,6 +5,13 @@ const validateArgs = (args) => {
       message: 'Cant be combined'
     };
   }
+
+  if (args.some((arg) => /^-[^n,c]/.test(arg))) {
+    throw {
+      name: 'invalidOption',
+      message: 'head: illegal-option'
+    };
+  }
 };
 
 const isOption = (word) => {

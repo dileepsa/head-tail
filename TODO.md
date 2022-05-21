@@ -2,8 +2,6 @@
 - [ ] Refactor `parseArgs`.
 
 **TODO:**
-- [ ] Throw an error when option is invalid.
-- [ ] Use regex in parseArgs.
 - [ ] Make head accept multiple files.
 - [ ] Make `parseArgs` work when options are without space.
 
@@ -13,6 +11,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Use regex in parseArgs.
+- [x] Throw an error when option is invalid.
 - [x] Change the `headmain` to throw usage.
 - [x] Change the `message` to usage.
 - [x] Go until options are triggered, consider all the file names after that option.

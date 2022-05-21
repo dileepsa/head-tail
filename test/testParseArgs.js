@@ -60,6 +60,14 @@ describe('validateArgs', () => {
       message: 'Cant be combined'
     });
   });
+
+  it('Should throw an error if option is -v', () => {
+    const actual = () => validateArgs(['-v', '10']);
+    assert.throws(actual, {
+      name: 'invalidOption',
+      message: 'head: illegal-option'
+    });
+  });
 });
 
 describe('isOption', () => {
