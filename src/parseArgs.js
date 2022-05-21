@@ -1,5 +1,3 @@
-/* eslint-disable max-statements */
-
 const validateArgs = (args) => {
   if (args.includes('-n') && args.includes('-c')) {
     throw {
@@ -15,21 +13,16 @@ const isOption = (word) => {
 };
 
 const parseArgs = (args) => {
-  validateArgs(args);
   const options = { name: '-n', count: 10, fileNames: [] };
 
   let index = 0;
-  while (index < args.length) {
-    if (isOption(args[index])) {
-      options.name = args[index];
-      options.count = +args[index + 1];
-      index += 2;
-    }
-    if (!isOption(args[index])) {
-      options.fileNames.push(args[index]);
-      index++;
-    }
+  while (isOption(args[index])) {
+    options.name = args[index];
+    options.count = +args[index + 1];
+    index += 2;
   }
+  options.fileNames = args.slice(index);
+  validateArgs(args);
   return options;
 };
 

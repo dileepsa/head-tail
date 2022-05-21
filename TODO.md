@@ -1,9 +1,11 @@
 **WORKING:**
+- [ ] Refactor `parseArgs`.
 
 **TODO:**
+- [ ] Throw an error when option is invalid.
 - [ ] Use regex in parseArgs.
 - [ ] Make head accept multiple files.
-- [ ] Refactor `parseArgs`.
+- [ ] Make `parseArgs` work when options are without space.
 
 **MUST:**
 - [ ] Review code after function becomes 4 lines.
@@ -11,6 +13,7 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Go until options are triggered, consider all the file names after that option.
 - [x] Add tests for `isOption`
 - [x] Check the options are valid.
 - [x] Make parseArgs work when same option is repeated.
