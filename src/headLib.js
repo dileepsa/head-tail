@@ -19,7 +19,7 @@ const headMain = (readFile, args) => {
   } catch (error) {
     throw {
       name: 'FileReadError',
-      message: `Unable to read ${fileNames[0]}`,
+      message: 'usage: head [-n lines | -c bytes] [file ...]',
       fileName: fileNames[0]
     };
   }

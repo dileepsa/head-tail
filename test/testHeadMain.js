@@ -33,7 +33,7 @@ describe('headMain', () => {
     const actual = () => headMain(mockedReadFile, ['-c', '3', 'missingFile']);
     assert.throws(actual, {
       name: 'FileReadError',
-      message: 'Unable to read missingFile',
+      message: 'usage: head [-n lines | -c bytes] [file ...]',
       fileName: 'missingFile'
     });
   });

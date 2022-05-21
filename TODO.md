@@ -13,6 +13,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Change the `headmain` to throw usage.
+- [x] Change the `message` to usage.
 - [x] Go until options are triggered, consider all the file names after that option.
 - [x] Add tests for `isOption`
 - [x] Check the options are valid.
