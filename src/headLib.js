@@ -12,7 +12,7 @@ const head = (content, count, separator) => {
 const selectSeperator = (option) => option === '-c' ? '' : '\n';
 
 const headMain = (readFile, args) => {
-  const { fileNames, optionName, count } = parseArgs(args);
+  const { fileNames, name, count } = parseArgs(args);
   let content;
   try {
     content = readFile(fileNames[0], 'utf-8');
@@ -23,7 +23,7 @@ const headMain = (readFile, args) => {
       fileName: fileNames[0]
     };
   }
-  const separator = selectSeperator(optionName);
+  const separator = selectSeperator(name);
   return head(content, count, separator);
 };
 

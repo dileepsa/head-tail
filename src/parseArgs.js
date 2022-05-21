@@ -1,6 +1,4 @@
-const isStartsWith = (word, character) => {
-  return word.startsWith(character);
-};
+/* eslint-disable max-statements */
 
 const validateArgs = (args) => {
   if (args.includes('-n') && args.includes('-c')) {
@@ -11,14 +9,25 @@ const validateArgs = (args) => {
   }
 };
 
+const isOption = (word) => word.match(/^-./);
+
 const parseArgs = (args) => {
   validateArgs(args);
-  let [optionName, count, ...fileNames] = args;
-  if (!isStartsWith(optionName, '-')) {
-    [...fileNames] = args;
-    return { fileNames, count: 10 };
+  const options = { name: '-n', count: 10, fileNames: [] };
+
+  let index = 0;
+  while (index < args.length) {
+    if (isOption(args[index])) {
+      options.name = args[index];
+      options.count = +args[index + 1];
+      index += 2;
+    }
+    if (!isOption(args[index])) {
+      options.fileNames.push(args[index]);
+      index++;
+    }
   }
-  return { fileNames, optionName, count: +count };
+  return options;
 };
 
 exports.parseArgs = parseArgs;

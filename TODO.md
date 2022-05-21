@@ -1,10 +1,10 @@
 **WORKING:**
-- [ ] Check the options are valid.
 
 **TODO:**
-- [ ] Make parseArgs work when same option is repeated.
+- [ ] Check the options are valid.
 - [ ] Use regex in parseArgs.
 - [ ] Make head accept multiple files.
+- [ ] Refactor `parseArgs`.
 
 **MUST:**
 - [ ] Review code after function becomes 4 lines.
@@ -12,6 +12,10 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Make parseArgs work when same option is repeated.
+- [x] Go through the args array and find which is options and files.
+- [x] Change the structure of object to `name count filenames`
+- [x] Change the `optionName` to `name`.
 - [x] Add try catch in `main`.
 - [x] Write assert throws when file not found.
 - [x] Write a try catch in `headMain`.
