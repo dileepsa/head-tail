@@ -9,7 +9,10 @@ const validateArgs = (args) => {
   }
 };
 
-const isOption = (word) => word.match(/^-./);
+const isOption = (word) => {
+  const regEx = /^-[n,c]/;
+  return regEx.test(word);
+};
 
 const parseArgs = (args) => {
   validateArgs(args);
@@ -32,3 +35,4 @@ const parseArgs = (args) => {
 
 exports.parseArgs = parseArgs;
 exports.validateArgs = validateArgs;
+exports.isOption = isOption;

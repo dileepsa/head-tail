@@ -1,7 +1,6 @@
 **WORKING:**
 
 **TODO:**
-- [ ] Check the options are valid.
 - [ ] Use regex in parseArgs.
 - [ ] Make head accept multiple files.
 - [ ] Refactor `parseArgs`.
@@ -12,6 +11,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Add tests for `isOption`
+- [x] Check the options are valid.
 - [x] Make parseArgs work when same option is repeated.
 - [x] Go through the args array and find which is options and files.
 - [x] Change the structure of object to `name count filenames`

@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { parseArgs, validateArgs } = require('../src/parseArgs.js');
+const { parseArgs, validateArgs, isOption } = require('../src/parseArgs.js');
 
 describe('parseArgs', () => {
   it('Should parse the args when -n is given', () => {
@@ -59,5 +59,22 @@ describe('validateArgs', () => {
       name: 'invalidOptions',
       message: 'Cant be combined'
     });
+  });
+});
+
+describe('isOption', () => {
+  it('Should return true when -n is given ', () => {
+    assert.strictEqual(isOption('-n'), true);
+    assert.strictEqual(isOption('-n1'), true);
+  });
+
+  it('Should return true when -c is given ', () => {
+    assert.strictEqual(isOption('-c'), true);
+    assert.strictEqual(isOption('-c1'), true);
+  });
+
+  it('Should return false when invalid option is given ', () => {
+    assert.strictEqual(isOption('-v'), false);
+    assert.strictEqual(isOption('-v1'), false);
   });
 });
