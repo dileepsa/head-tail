@@ -1,9 +1,9 @@
 /* eslint-disable max-statements */
 const validateArgs = (args) => {
-  if (args.includes('-n') && args.includes('-c')) {
+  if (/-[n]+/.test(args) && /-[c]+/.test(args)) {
     throw {
       name: 'invalidOptions',
-      message: 'Cant be combined'
+      message: "head: can't combine line and byte counts"
     };
   }
 

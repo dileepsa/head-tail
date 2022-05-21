@@ -1,10 +1,8 @@
 **WORKING:**
 - [ ] Refactor `parseArgs`.
-- [ ] Make `parseArgs` work when options are without space.
 
 **TODO:**
 - [ ] Make head accept multiple files.
-- [ ] Throw error if 2 different options are specified.
 
 **MUST:**
 - [ ] Review code after function becomes 4 lines.
@@ -12,6 +10,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Throw error if 2 different options are specified.
+- [x] Make `parseArgs` work when options are without space.
 - [x] Use regex in parseArgs.
 - [x] Throw an error when option is invalid.
 - [x] Change the `headmain` to throw usage.

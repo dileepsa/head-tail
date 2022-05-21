@@ -66,7 +66,7 @@ describe('validateArgs', () => {
     const actual = () => validateArgs(['-n', '10', '-c', '10']);
     assert.throws(actual, {
       name: 'invalidOptions',
-      message: 'Cant be combined'
+      message: "head: can't combine line and byte counts"
     });
   });
 
@@ -76,6 +76,10 @@ describe('validateArgs', () => {
       name: 'invalidOption',
       message: 'head: illegal-option'
     });
+  });
+  it('Should throw an error if 2 options are specified without space', () => {
+    const actual = () => validateArgs(['-n10', '-c10']);
+    assert.throws(actual, { name: 'invalidOptions', message: "head: can't combine line and byte counts" });
   });
 });
 
