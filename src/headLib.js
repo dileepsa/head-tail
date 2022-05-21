@@ -13,7 +13,16 @@ const selectSeperator = (option) => option === '-c' ? '' : '\n';
 
 const headMain = (readFile, args) => {
   const { fileNames, optionName, count } = parseArgs(args);
-  const content = readFile(fileNames[0], 'utf-8');
+  let content;
+  try {
+    content = readFile(fileNames[0], 'utf-8');
+  } catch (error) {
+    throw {
+      name: 'FileReadError',
+      message: `Unable to read ${fileNames[0]}`,
+      fileName: fileNames[0]
+    };
+  }
   const separator = selectSeperator(optionName);
   return head(content, count, separator);
 };

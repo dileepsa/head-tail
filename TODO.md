@@ -1,8 +1,9 @@
 **WORKING:**
 
 **TODO:**
-- [ ] Write a try catch in `headMain`.
-- [ ] Dont work on files at start instead work on content of file.
+- [ ] Use regex in parseArgs.
+- [ ] Make parseArgs work when same option is repeated.
+- [ ] Make head accept multiple files.
 
 **MUST:**
 - [ ] Review code after function becomes 4 lines.
@@ -10,6 +11,10 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Add try catch in `main`.
+- [x] Write assert throws when file not found.
+- [x] Write a try catch in `headMain`.
+- [x] Dont work on files at start instead work on content of file.
 - [x] Add main in `head.js`.
 - [x] Make head work for one file.
 - [x] Change the contract of `head` to take variables.
