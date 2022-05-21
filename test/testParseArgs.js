@@ -43,10 +43,19 @@ describe('parseArgs', () => {
       fileNames: ['hi.txt', 'by.txt'],
     });
   });
+
   it('Should consider the last value when the same option is repeated', () => {
     assert.deepStrictEqual(parseArgs(['-n', '10', '-n', '2', 'hi']), {
       name: '-n',
       count: 2,
+      fileNames: ['hi']
+    });
+  });
+
+  it('Should work when option and value are combined', () => {
+    assert.deepStrictEqual(parseArgs(['-n3', 'hi']), {
+      name: '-n',
+      count: 3,
       fileNames: ['hi']
     });
   });
