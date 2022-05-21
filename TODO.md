@@ -1,8 +1,9 @@
 **WORKING:**
+- [ ] Check the options are valid.
 
 **TODO:**
-- [ ] Use regex in parseArgs.
 - [ ] Make parseArgs work when same option is repeated.
+- [ ] Use regex in parseArgs.
 - [ ] Make head accept multiple files.
 
 **MUST:**

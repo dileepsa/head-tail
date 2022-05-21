@@ -1,10 +1,20 @@
-const isIncludes = (word, character) => {
-  return word.includes(character);
+const isStartsWith = (word, character) => {
+  return word.startsWith(character);
+};
+
+const validateArgs = (args) => {
+  if (args.includes('-n') && args.includes('-c')) {
+    throw {
+      name: 'invalidOptions',
+      message: 'Cant be combined'
+    };
+  }
 };
 
 const parseArgs = (args) => {
+  validateArgs(args);
   let [optionName, count, ...fileNames] = args;
-  if (!isIncludes(optionName, '-')) {
+  if (!isStartsWith(optionName, '-')) {
     [...fileNames] = args;
     return { fileNames, count: 10 };
   }
@@ -12,3 +22,4 @@ const parseArgs = (args) => {
 };
 
 exports.parseArgs = parseArgs;
+exports.validateArgs = validateArgs;

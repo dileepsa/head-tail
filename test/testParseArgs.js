@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { parseArgs } = require('../src/parseArgs.js');
+const { parseArgs, validateArgs } = require('../src/parseArgs.js');
 
 describe('parseArgs', () => {
   it('Should parse the args when -n is given', () => {
@@ -40,6 +40,16 @@ describe('parseArgs', () => {
     assert.deepStrictEqual(parseArgs(['hi.txt', 'by.txt']), {
       fileNames: ['hi.txt', 'by.txt'],
       count: 10
+    });
+  });
+});
+
+describe('validateArgs', () => {
+  it('Should throw an error if 2 options are different', () => {
+    const actual = () => validateArgs(['-n', '10', '-c', '10']);
+    assert.throws(actual, {
+      name: 'invalidOptions',
+      message: 'Cant be combined'
     });
   });
 });
