@@ -33,8 +33,17 @@ describe('headMain', () => {
     const actual = () => headMain(mockedReadFile, ['-c', '3', 'missingFile']);
     assert.throws(actual, {
       name: 'FileReadError',
-      message: 'usage: head [-n lines | -c bytes] [file ...]',
+      message: 'Unable to read missingFile',
       fileName: 'missingFile'
+    });
+  });
+
+  it('Should throw an error if files are not specified ', () => {
+    const mockedReadFile = mockReadFile('./hello', 'bye');
+    const actual = () => headMain(mockedReadFile, ['-c', '3']);
+    assert.throws(actual, {
+      name: 'FileReadError',
+      message: 'No files specified',
     });
   });
 });

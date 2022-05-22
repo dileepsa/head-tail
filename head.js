@@ -5,7 +5,7 @@ const main = () => {
   try {
     console.log(headMain(fs.readFileSync, process.argv.slice(2)));
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
   }
 };
 

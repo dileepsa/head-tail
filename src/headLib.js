@@ -13,22 +13,29 @@ const selectSeperator = (option) => option === '-c' ? '' : '\n';
 
 const headMain = (readFile, args) => {
   const { fileNames, name, count } = parseArgs(args);
+
+  if (fileNames.length < 1) {
+    throw {
+      name: 'FileReadError',
+      message: 'No files specified',
+    };
+  }
+
   let content;
   try {
     content = readFile(fileNames[0], 'utf-8');
   } catch (error) {
     throw {
       name: 'FileReadError',
-      message: 'usage: head [-n lines | -c bytes] [file ...]',
+      message: `Unable to read ${fileNames[0]}`,
       fileName: fileNames[0]
     };
   }
   const separator = selectSeperator(name);
   return head(content, count, separator);
+
 };
 
 exports.head = head;
 exports.extract = extract;
-exports.splitLines = splitLines;
-exports.joinLines = joinLines;
 exports.headMain = headMain;

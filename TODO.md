@@ -2,7 +2,10 @@
 - [ ] Refactor `parseArgs`.
 
 **TODO:**
+- [ ] write a formatter.
 - [ ] Make head accept multiple files.
+**MAYBE*:**
+- Consider changing the contract of `parseargs` to send all the options and then validate.
 
 **MUST:**
 - [ ] Review code after function becomes 4 lines.
@@ -10,6 +13,9 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Throw error if files are not specified.
+- [x] Send errors to std error.
+- [x] export `splitlines` and `joinlines`.
 - [x] Throw error if 2 different options are specified.
 - [x] Make `parseArgs` work when options are without space.
 - [x] Use regex in parseArgs.
