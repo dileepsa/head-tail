@@ -3,7 +3,8 @@
 
 **TODO:**
 - [ ] write a formatter.
-- [ ] Make head accept multiple files.
+- [ ] Change the mock function to work on multiple files.
+
 **MAYBE*:**
 - Consider changing the contract of `parseargs` to send all the options and then validate.
 
@@ -13,6 +14,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] use map for multiple files.
+- [x] Make head accept multiple files.
 - [x] Throw error if files are not specified.
 - [x] Send errors to std error.
 - [x] export `splitlines` and `joinlines`.

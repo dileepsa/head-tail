@@ -22,6 +22,12 @@ describe('headMain', () => {
     assert.strictEqual(actual, 'bye');
   });
 
+  it('Should display 1 line in two files', () => {
+    const mockedReadFile = mockReadFile('./hello.txt', 'bye', 'utf-8');
+    const actual = headMain(mockedReadFile, ['./hello.txt', './hello.txt']);
+    assert.strictEqual(actual, 'bye\nbye');
+  });
+
   it('Should display 3 characters in a file', () => {
     const mockedReadFile = mockReadFile('./hello.txt', 'bye', 'utf-8');
     const actual = headMain(mockedReadFile, ['-c', '3', './hello.txt']);

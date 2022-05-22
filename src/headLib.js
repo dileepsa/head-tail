@@ -20,19 +20,20 @@ const headMain = (readFile, args) => {
       message: 'No files specified',
     };
   }
-
-  let content;
-  try {
-    content = readFile(fileNames[0], 'utf-8');
-  } catch (error) {
-    throw {
-      name: 'FileReadError',
-      message: `Unable to read ${fileNames[0]}`,
-      fileName: fileNames[0]
-    };
-  }
-  const separator = selectSeperator(name);
-  return head(content, count, separator);
+  return fileNames.map((fileName) => {
+    let content;
+    try {
+      content = readFile(fileName, 'utf-8');
+    } catch (error) {
+      throw {
+        name: 'FileReadError',
+        message: `Unable to read ${fileName}`,
+        fileName: fileName
+      };
+    }
+    const separator = selectSeperator(name);
+    return head(content, count, separator);
+  }).join('\n');
 
 };
 
