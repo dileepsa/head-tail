@@ -2,9 +2,8 @@
 - [ ] Refactor `parseArgs`.
 
 **TODO:**
-- [ ] write a formatter.
 - [ ] Change the mock function to work on multiple files.
-
+- [ ] connect formatter in headMain.
 **MAYBE*:**
 - Consider changing the contract of `parseargs` to send all the options and then validate.
 
@@ -14,6 +13,9 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] write a formatter.
+- [x] format differntly when one one file is given.
+- [x] write formatter in a differnet file.
 - [x] use map for multiple files.
 - [x] Make head accept multiple files.
 - [x] Throw error if files are not specified.
