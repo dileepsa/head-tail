@@ -15,10 +15,6 @@ const selectSeperator = (option) => option === '-c' ? '' : '\n';
 const headMain = (readFile, args) => {
   const { fileNames, option } = parseArgs(args);
 
-  if (fileNames.length < 1) {
-    return 'usage: head [-n lines | -c bytes] [file ...]';
-  }
-
   const contents = fileNames.map((fileName) => {
     let content;
     try {

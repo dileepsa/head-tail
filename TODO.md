@@ -5,6 +5,7 @@
 **TODO:**
 - [ ] Refactor `headMain`.
 - [ ] Handle if `-10` comes.
+- [ ] Test multiple files.
 
 **MAYBE*:**
 
@@ -14,6 +15,7 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Throw error if `0` is a value.
 - [x] Write tests for validateFiles.
 - [x] validate the files in `validateArgs`
 - [x] Change the error message in `validateArgs`.
