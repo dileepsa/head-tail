@@ -1,7 +1,10 @@
 const { createIterator } = require('./createIterator.js');
 const { validateArgs } = require('./validateArgs.js');
 
-const seperateNameValue = (arg) => [arg.slice(0, 2), arg.slice(2)];
+const seperateNameValue = (arg) => {
+  return isFinite(arg) ? ['-n', '' + Math.abs(arg)] :
+    [arg.slice(0, 2), arg.slice(2)];
+};
 
 const seperateArgs = (args) => {
   return args.flatMap((arg) =>

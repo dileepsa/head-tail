@@ -54,6 +54,11 @@ describe('seperateArgs', () => {
     const actual = seperateArgs(['-n10', '-n10']);
     assert.deepStrictEqual(actual, ['-n', '10', '-n', '10']);
   });
+
+  it('Should seperate when -10 is specified', () => {
+    const actual = seperateArgs(['-10']);
+    assert.deepStrictEqual(actual, ['-n', '10']);
+  });
 });
 
 describe('seperateNameValue', () => {

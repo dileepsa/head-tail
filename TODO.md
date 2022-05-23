@@ -1,10 +1,10 @@
 **WORKING:**
 - [ ] Refactor `parseArgs`.
 - [x] Refactor `validateArgs`.
+- [] Handle if `-10` comes.
 
 **TODO:**
 - [ ] Refactor `headMain`.
-- [ ] Handle if `-10` comes.
 - [ ] Test multiple files.
 
 **MAYBE*:**
