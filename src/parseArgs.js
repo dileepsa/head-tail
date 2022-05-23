@@ -1,21 +1,4 @@
-/* eslint-disable max-statements */
 const { createIterator } = require('./createIterator.js');
-
-const validateArgs = (args) => {
-  if (/-[n]+/.test(args) && /-[c]+/.test(args)) {
-    throw {
-      name: 'invalidOptions',
-      message: "head: can't combine line and byte counts"
-    };
-  }
-
-  if (args.some((arg) => /^-[^n,c]/.test(arg))) {
-    throw {
-      name: 'invalidOption',
-      message: 'head: illegal-option'
-    };
-  }
-};
 
 const seperateNameValue = (arg) => [arg.slice(0, 2), arg.slice(2)];
 
@@ -29,13 +12,13 @@ const parseOptions = (argsIterator) => {
   let currentArg = argsIterator.currentArg();
 
   while (!argsIterator.isEnd()) {
-    if (currentArg.startsWith('-')) {
-      parsedArgs.options.push(
-        { name: currentArg, value: + argsIterator.nextArg() });
-    } else {
+    if (!currentArg.startsWith('-')) {
       parsedArgs.fileNames = argsIterator.restOfArgs();
       return parsedArgs;
     }
+
+    parsedArgs.options.push(
+      { name: currentArg, value: + argsIterator.nextArg() });
     argsIterator.nextArg();
     currentArg = argsIterator.currentArg();
   }
@@ -44,15 +27,12 @@ const parseOptions = (argsIterator) => {
 
 const parseArgs = (args) => {
   const modifiedArgs = seperateArgs(args);
-  validateArgs(modifiedArgs);
-
   const argsIterator = createIterator(modifiedArgs);
   const options = parseOptions(argsIterator);
   return options;
 };
 
 exports.parseArgs = parseArgs;
-exports.validateArgs = validateArgs;
 exports.seperateArgs = seperateArgs;
 exports.seperateNameValue = seperateNameValue;
 exports.parseOptions = parseOptions;

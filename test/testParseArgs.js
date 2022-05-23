@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { parseArgs, validateArgs, parseOptions, seperateArgs, seperateNameValue } = require('../src/parseArgs.js');
+const { parseArgs, parseOptions, seperateArgs, seperateNameValue } = require('../src/parseArgs.js');
 const { createIterator } = require('../src/createIterator.js');
 
 describe('parseArgs', () => {
@@ -29,28 +29,6 @@ describe('parseArgs', () => {
     const actual = parseArgs(['-c10', 'wish.txt']);
     const expected = { options: [{ name: '-c', value: 10 }], fileNames: ['wish.txt'] };
     assert.deepStrictEqual(actual, expected);
-  });
-});
-
-describe('validateArgs', () => {
-  it('Should throw an error if 2 options are different', () => {
-    const actual = () => validateArgs(['-n', '10', '-c', '10']);
-    assert.throws(actual, {
-      name: 'invalidOptions',
-      message: "head: can't combine line and byte counts"
-    });
-  });
-
-  it('Should throw an error if option is -v', () => {
-    const actual = () => validateArgs(['-v', '10']);
-    assert.throws(actual, {
-      name: 'invalidOption',
-      message: 'head: illegal-option'
-    });
-  });
-  it('Should throw an error if 2 options are specified without space', () => {
-    const actual = () => validateArgs(['-n10', '-c10']);
-    assert.throws(actual, { name: 'invalidOptions', message: "head: can't combine line and byte counts" });
   });
 });
 

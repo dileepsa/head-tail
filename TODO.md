@@ -4,7 +4,6 @@
 **TODO:**
 - [ ] Refactor `headMain`.
 - [ ] Handle if `-10` comes.
-- [ ] validate the object recieving from `parseArgs`
 
 **MAYBE*:**
 
@@ -14,6 +13,10 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] set -n when no option is specified.
+- [x] validate the object recieving from `parseArgs`
+- [x] Change the validateArgs function.
+- [x] Extract validateArgs into a different file.
 - [x] Extract `parseOption` function from parseArgs.
 - [x] Change the tests of `parseArgs`
 - [x] Consider changing the contract of `parseargs` to send all the options and then validate.
