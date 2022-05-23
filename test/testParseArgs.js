@@ -4,61 +4,31 @@ const { createIterator } = require('../src/createIterator.js');
 
 describe('parseArgs', () => {
   it('Should parse the args when -n is given', () => {
-    assert.deepStrictEqual(parseArgs(['-n', '10', 'wish.txt']), {
-      name: '-n',
-      count: 10,
-      fileNames: ['wish.txt'],
-    });
-
-    assert.deepStrictEqual(parseArgs(['-n', '2', 'wish.txt']), {
-      name: '-n',
-      count: 2,
-      fileNames: ['wish.txt'],
-    });
+    const actual = parseArgs(['-n', '10', 'wish.txt']);
+    const expected = { options: [{ name: '-n', value: 10 }], fileNames: ['wish.txt'] };
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Should parse for -c option', () => {
-    assert.deepStrictEqual(parseArgs(['-c', '2', 'wish.txt']), {
-      name: '-c',
-      count: 2,
-      fileNames: ['wish.txt'],
-    });
-
-    assert.deepStrictEqual(parseArgs(['-c', '9', 'hello.txt']), {
-      name: '-c',
-      count: 9,
-      fileNames: ['hello.txt'],
-    });
+    const actual = parseArgs(['-c', '10', 'wish.txt']);
+    const expected = { options: [{ name: '-c', value: 10 }], fileNames: ['wish.txt'] };
+    assert.deepStrictEqual(actual, expected);
   });
 
-  it('Should return only filenames and count', () => {
-    assert.deepStrictEqual(parseArgs(['wish.txt']), {
-      name: '-n',
-      count: 10,
-      fileNames: ['wish.txt'],
-    });
+  it('Should return only filenames', () => {
+    let actual = parseArgs(['wish.txt']);
+    let expected = { options: [], fileNames: ['wish.txt'] };
+    assert.deepStrictEqual(actual, expected);
 
-    assert.deepStrictEqual(parseArgs(['hi.txt', 'by.txt']), {
-      name: '-n',
-      count: 10,
-      fileNames: ['hi.txt', 'by.txt'],
-    });
-  });
-
-  it('Should consider the last value when the same option is repeated', () => {
-    assert.deepStrictEqual(parseArgs(['-n', '10', '-n', '2', 'hi']), {
-      name: '-n',
-      count: 2,
-      fileNames: ['hi']
-    });
+    actual = parseArgs(['wish.txt', 'hi.txt']);
+    expected = { options: [], fileNames: ['wish.txt', 'hi.txt'] };
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Should work when option and value are combined', () => {
-    assert.deepStrictEqual(parseArgs(['-n3', 'hi']), {
-      name: '-n',
-      count: 3,
-      fileNames: ['hi']
-    });
+    const actual = parseArgs(['-c10', 'wish.txt']);
+    const expected = { options: [{ name: '-c', value: 10 }], fileNames: ['wish.txt'] };
+    assert.deepStrictEqual(actual, expected);
   });
 });
 
@@ -122,24 +92,30 @@ describe('parseOptions', () => {
   it('Should parse when one option is given', () => {
     const argsIterator = createIterator(['-n', '10']);
     const actual = parseOptions(argsIterator);
-    assert.deepStrictEqual(actual, { name: '-n', count: 10, fileNames: [] });
+    const expected = { options: [{ name: '-n', value: 10 }], fileNames: [] };
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Should parse when option and filename is given', () => {
     const argsIterator = createIterator(['-n', '10', 'hi']);
     const actual = parseOptions(argsIterator);
-    assert.deepStrictEqual(actual, { name: '-n', count: 10, fileNames: ['hi'] });
+    const expected = { options: [{ name: '-n', value: 10 }], fileNames: ['hi'] };
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Should parse when multiple options are given', () => {
     const argsIterator = createIterator(['-c', '2', '-c', '5', 'hi']);
     const actual = parseOptions(argsIterator);
-    assert.deepStrictEqual(actual, { name: '-c', count: 5, fileNames: ['hi'] });
+    const expected = {
+      options: [{ name: '-c', value: 2 }, { name: '-c', value: 5 }], fileNames: ['hi']
+    };
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Should parse when multiple files are given', () => {
     const argsIterator = createIterator(['-c', '5', 'hi', 'bye']);
     const actual = parseOptions(argsIterator);
-    assert.deepStrictEqual(actual, { name: '-c', count: 5, fileNames: ['hi', 'bye'] });
+    const expected = { options: [{ name: '-c', value: 5 }], fileNames: ['hi', 'bye'] };
+    assert.deepStrictEqual(actual, expected);
   });
 });

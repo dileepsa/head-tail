@@ -1,13 +1,12 @@
 **WORKING:**
 - [ ] Refactor `parseArgs`.
-- [ ] Extract `parseOption` function from parseArgs.
 
 **TODO:**
 - [ ] Refactor `headMain`.
 - [ ] Handle if `-10` comes.
+- [ ] validate the object recieving from `parseArgs`
 
 **MAYBE*:**
-- Consider changing the contract of `parseargs` to send all the options and then validate.
 
 **MUST:**
 - [ ] Review code after function becomes 4 lines.
@@ -15,6 +14,9 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Extract `parseOption` function from parseArgs.
+- [x] Change the tests of `parseArgs`
+- [x] Consider changing the contract of `parseargs` to send all the options and then validate.
 - [x] Remove isOption function.
 - [x] test `seperateNameValue` function.
 - [x] Test `seperateArgs`.

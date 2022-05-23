@@ -25,21 +25,21 @@ const seperateArgs = (args) => {
 };
 
 const parseOptions = (argsIterator) => {
-  const options = { name: '-n', count: 10, fileNames: [] };
+  const parsedArgs = { options: [], fileNames: [] };
   let currentArg = argsIterator.currentArg();
 
   while (!argsIterator.isEnd()) {
     if (currentArg.startsWith('-')) {
-      options.name = currentArg;
-      options.count = + argsIterator.nextArg();
+      parsedArgs.options.push(
+        { name: currentArg, value: + argsIterator.nextArg() });
     } else {
-      options.fileNames = argsIterator.restOfArgs();
-      return options;
+      parsedArgs.fileNames = argsIterator.restOfArgs();
+      return parsedArgs;
     }
     argsIterator.nextArg();
     currentArg = argsIterator.currentArg();
   }
-  return options;
+  return parsedArgs;
 };
 
 const parseArgs = (args) => {
