@@ -54,3 +54,5 @@ const parseArgs = (args) => {
 exports.parseArgs = parseArgs;
 exports.validateArgs = validateArgs;
 exports.isOption = isOption;
+exports.seperateArgs = seperateArgs;
+exports.seperateNameValue = seperateNameValue;

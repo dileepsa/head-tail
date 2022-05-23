@@ -4,8 +4,8 @@
 **TODO:**
 - [ ] Refactor `headMain`.
 - [ ] Remove isOption function.
-- [ ] Test `seperateArgs`.
 - [ ] Extract `parseOption` function from parseArgs.
+- [ ] Handle if `-10` comes.
 
 **MAYBE*:**
 - Consider changing the contract of `parseargs` to send all the options and then validate.
@@ -16,6 +16,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] test `seperateNameValue` function.
+- [x] Test `seperateArgs`.
 - [x] Create the iterator in different file.
 - [x] Consider the iterator method.
 - [x] Change the mock function to work on multiple files.

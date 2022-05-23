@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { parseArgs, validateArgs, isOption } = require('../src/parseArgs.js');
+const { parseArgs, validateArgs, isOption, seperateArgs, seperateNameValue } = require('../src/parseArgs.js');
 
 describe('parseArgs', () => {
   it('Should parse the args when -n is given', () => {
@@ -97,5 +97,39 @@ describe('isOption', () => {
   it('Should return false when invalid option is given ', () => {
     assert.strictEqual(isOption('-v'), false);
     assert.strictEqual(isOption('-v1'), false);
+  });
+});
+
+describe('seperateArgs', () => {
+  it('Should seperate the combined args', () => {
+    const actual = seperateArgs(['-n10']);
+    assert.deepStrictEqual(actual, ['-n', '10']);
+  });
+
+  it('Should not seperate when options are seperated', () => {
+    const actual = seperateArgs(['-n', '10']);
+    assert.deepStrictEqual(actual, ['-n', '10']);
+  });
+
+  it('Should seperate when options -n10 -n 10 are given', () => {
+    const actual = seperateArgs(['-n10', '-n', '10']);
+    assert.deepStrictEqual(actual, ['-n', '10', '-n', '10']);
+  });
+
+  it('Should seperate when 2 combined options are given', () => {
+    const actual = seperateArgs(['-n10', '-n10']);
+    assert.deepStrictEqual(actual, ['-n', '10', '-n', '10']);
+  });
+});
+
+describe('seperateNameValue', () => {
+  it('Should seperate name and value', () => {
+    const actual = seperateNameValue('-n10');
+    assert.deepStrictEqual(actual, ['-n', '10']);
+  });
+
+  it('Should seperate the option', () => {
+    const actual = seperateNameValue('-n');
+    assert.deepStrictEqual(actual, ['-n', '']);
   });
 });
