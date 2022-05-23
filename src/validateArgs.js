@@ -6,18 +6,28 @@ const throwIfIllegalOption = (option) => {
   if (!isOptionValid(option)) {
     throw {
       name: 'invalidOption',
-      message: `head: illegal-option ${option.name}`
+      message: `head: illegal-option -- ${option.name[1]}`
+    };
+  }
+};
+
+const throwIfNoFiles = (files) => {
+  if (files.length < 1) {
+    throw {
+      name: 'noFilesSpecified',
+      message: 'usage: head [-n lines | -c bytes] [file ...]'
     };
   }
 };
 
 const validateArgs = (args) => {
-  if (args.length < 1) {
+  throwIfNoFiles(args.fileNames);
+  if (args.options.length < 1) {
     return;
   }
-  args.forEach(throwIfIllegalOption);
-  const firstSwitch = args[0].name;
-  args.forEach((option) => {
+  args.options.forEach(throwIfIllegalOption);
+  const firstSwitch = args.options[0].name;
+  args.options.forEach((option) => {
     if (firstSwitch !== option.name) {
       throw {
         name: 'invalidOptions',
@@ -26,8 +36,6 @@ const validateArgs = (args) => {
     }
   });
 };
-
-// validateArgs([{ name: '-v', value: 10 }]);
 
 exports.isOptionValid = isOptionValid;
 exports.validateArgs = validateArgs;

@@ -4,7 +4,6 @@
 **TODO:**
 - [ ] Refactor `headMain`.
 - [ ] Handle if `-10` comes.
-- [ ] Refactor `validateArgs`.
 
 **MAYBE*:**
 
@@ -14,6 +13,9 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Refactor `validateArgs`.
+- [x] validate the files in `validateArgs`
+- [x] Change the error message in `validateArgs`.
 - [x] Use forEach in `validateArgs`
 - [x] validate in `parseArgs` only.
 - [x] set -n when no option is specified.

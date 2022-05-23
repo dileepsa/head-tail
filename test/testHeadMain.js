@@ -47,11 +47,4 @@ describe('headMain', () => {
       fileName: 'missingFile'
     });
   });
-
-  it('Should throw an error if files are not specified ', () => {
-    const mockedReadFile = mockReadFile(['./hello'], ['bye']);
-    const actual = headMain(mockedReadFile, []);
-    const expected = 'usage: head [-n lines | -c bytes] [file ...]';
-    assert.strictEqual(actual, expected);
-  });
 });

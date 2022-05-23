@@ -30,7 +30,7 @@ const parseArgs = (args) => {
   const modifiedArgs = seperateArgs(args);
   const argsIterator = createIterator(modifiedArgs);
   const parsedArgs = parseOptions(argsIterator);
-  validateArgs(parsedArgs.options);
+  validateArgs(parsedArgs);
 
   parsedArgs.options.unshift({ name: '-n', value: 10 });
 
