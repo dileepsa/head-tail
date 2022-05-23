@@ -2,7 +2,7 @@ const isOptionValid = (option) => {
   return option.name === '-n' || option.name === '-c';
 };
 
-const throwIfIllegalOption = (option) => {
+const validateIllegalOtion = (option) => {
   if (!isOptionValid(option)) {
     throw {
       name: 'invalidOption',
@@ -11,7 +11,7 @@ const throwIfIllegalOption = (option) => {
   }
 };
 
-const throwIfNoFiles = (files) => {
+const validateFiles = (files) => {
   if (files.length < 1) {
     throw {
       name: 'noFilesSpecified',
@@ -20,22 +20,29 @@ const throwIfNoFiles = (files) => {
   }
 };
 
+const validateInvalidCombination = (flag1, flag2) => {
+  if (flag1 !== flag2) {
+    throw {
+      name: 'invalidOptions',
+      message: "head: can't combine line and byte counts"
+    };
+  }
+};
+
 const validateArgs = (args) => {
-  throwIfNoFiles(args.fileNames);
-  if (args.options.length < 1) {
+  validateFiles(args.fileNames);
+  const options = args.options;
+  if (options.length < 1) {
     return;
   }
-  args.options.forEach(throwIfIllegalOption);
-  const firstSwitch = args.options[0].name;
-  args.options.forEach((option) => {
-    if (firstSwitch !== option.name) {
-      throw {
-        name: 'invalidOptions',
-        message: "head: can't combine line and byte counts"
-      };
-    }
-  });
+  options.forEach(validateIllegalOtion);
+  const firstSwitch = options[0].name;
+  options.forEach((option) =>
+    validateInvalidCombination(firstSwitch, option.name));
 };
 
 exports.isOptionValid = isOptionValid;
 exports.validateArgs = validateArgs;
+exports.validateFiles = validateFiles;
+exports.validateInvalidCombination = validateInvalidCombination;
+exports.validateIllegalOtion = validateIllegalOtion;

@@ -1,5 +1,6 @@
 **WORKING:**
 - [ ] Refactor `parseArgs`.
+- [x] Refactor `validateArgs`.
 
 **TODO:**
 - [ ] Refactor `headMain`.
@@ -13,7 +14,7 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
-- [x] Refactor `validateArgs`.
+- [x] Write tests for validateFiles.
 - [x] validate the files in `validateArgs`
 - [x] Change the error message in `validateArgs`.
 - [x] Use forEach in `validateArgs`
