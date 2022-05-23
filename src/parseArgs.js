@@ -1,4 +1,6 @@
 /* eslint-disable max-statements */
+const { createIterator } = require('./createIterator.js');
+
 const validateArgs = (args) => {
   if (/-[n]+/.test(args) && /-[c]+/.test(args)) {
     throw {
@@ -20,23 +22,32 @@ const isOption = (word) => {
   return regEx.test(word);
 };
 
-const parseArgs = (args) => {
-  const options = { name: '-n', count: 10, fileNames: [] };
+const seperateNameValue = (arg) => [arg.slice(0, 2), arg.slice(2)];
 
-  let index = 0;
-  while (isOption(args[index])) {
-    if (args[index].length === 2) {
-      options.name = args[index];
-      options.count = +args[index + 1];
-      index += 2;
+const seperateArgs = (args) => {
+  return args.flatMap((arg) =>
+    arg.startsWith('-') ? seperateNameValue(arg) : arg).filter((arg) => arg);
+};
+
+const parseArgs = (args) => {
+  const modifiedArgs = seperateArgs(args);
+  const options = { name: '-n', count: 10, fileNames: [] };
+  validateArgs(modifiedArgs);
+
+  const argsIterator = createIterator(modifiedArgs);
+  let currentArg = argsIterator.currentArg();
+
+  while (!argsIterator.isEnd()) {
+    if (currentArg.startsWith('-')) {
+      options.name = currentArg;
+      options.count = + argsIterator.nextArg();
     } else {
-      options.name = args[index].substring(0, 2);
-      options.count = +args[index].substring(2);
-      index++;
+      options.fileNames = argsIterator.restOfArgs();
+      return options;
     }
+    argsIterator.nextArg();
+    currentArg = argsIterator.currentArg();
   }
-  options.fileNames = args.slice(index);
-  validateArgs(args);
   return options;
 };
 

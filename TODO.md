@@ -3,10 +3,12 @@
 
 **TODO:**
 - [ ] Refactor `headMain`.
+- [ ] Remove isOption function.
+- [ ] Test `seperateArgs`.
+- [ ] Extract `parseOption` function from parseArgs.
 
 **MAYBE*:**
 - Consider changing the contract of `parseargs` to send all the options and then validate.
-- [ ] Consider the iterator method.
 
 **MUST:**
 - [ ] Review code after function becomes 4 lines.
@@ -14,6 +16,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Create the iterator in different file.
+- [x] Consider the iterator method.
 - [x] Change the mock function to work on multiple files.
 - [x] Show usage when no files specified.
 - [x] change the test cases for head main(send arrays).
