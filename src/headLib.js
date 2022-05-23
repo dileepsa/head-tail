@@ -1,5 +1,6 @@
 const { splitLines, joinLines } = require('./stringUtils.js');
 const { parseArgs } = require('./parseArgs.js');
+const { format } = require('./format.js');
 
 const extract = (lines, count) => lines.slice(0, count);
 
@@ -15,12 +16,10 @@ const headMain = (readFile, args) => {
   const { fileNames, name, count } = parseArgs(args);
 
   if (fileNames.length < 1) {
-    throw {
-      name: 'FileReadError',
-      message: 'No files specified',
-    };
+    return 'usage: head [-n lines | -c bytes] [file ...]';
   }
-  return fileNames.map((fileName) => {
+
+  const contents = fileNames.map((fileName) => {
     let content;
     try {
       content = readFile(fileName, 'utf-8');
@@ -33,8 +32,9 @@ const headMain = (readFile, args) => {
     }
     const separator = selectSeperator(name);
     return head(content, count, separator);
-  }).join('\n');
+  });
 
+  return format(contents, fileNames);
 };
 
 exports.head = head;

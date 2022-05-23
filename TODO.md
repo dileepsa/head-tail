@@ -2,10 +2,11 @@
 - [ ] Refactor `parseArgs`.
 
 **TODO:**
-- [ ] Change the mock function to work on multiple files.
-- [ ] connect formatter in headMain.
+- [ ] Refactor `headMain`.
+
 **MAYBE*:**
 - Consider changing the contract of `parseargs` to send all the options and then validate.
+- [ ] Consider the iterator method.
 
 **MUST:**
 - [ ] Review code after function becomes 4 lines.
@@ -13,6 +14,11 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Change the mock function to work on multiple files.
+- [x] Show usage when no files specified.
+- [x] change the test cases for head main(send arrays).
+- [x] Change the `format` in multiple files test case.
+- [x] connect formatter in headMain.
 - [x] write a formatter.
 - [x] format differntly when one one file is given.
 - [x] write formatter in a differnet file.
