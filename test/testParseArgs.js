@@ -5,29 +5,31 @@ const { createIterator } = require('../src/createIterator.js');
 describe('parseArgs', () => {
   it('Should parse the args when -n is given', () => {
     const actual = parseArgs(['-n', '10', 'wish.txt']);
-    const expected = { options: [{ name: '-n', value: 10 }], fileNames: ['wish.txt'] };
+    const expected = {
+      option: { name: '-n', value: 10 }, fileNames: ['wish.txt']
+    };
     assert.deepStrictEqual(actual, expected);
   });
 
   it('Should parse for -c option', () => {
     const actual = parseArgs(['-c', '10', 'wish.txt']);
-    const expected = { options: [{ name: '-c', value: 10 }], fileNames: ['wish.txt'] };
+    const expected = { option: { name: '-c', value: 10 }, fileNames: ['wish.txt'] };
     assert.deepStrictEqual(actual, expected);
   });
 
   it('Should return only filenames', () => {
     let actual = parseArgs(['wish.txt']);
-    let expected = { options: [], fileNames: ['wish.txt'] };
+    let expected = { option: { name: '-n', value: 10 }, fileNames: ['wish.txt'] };
     assert.deepStrictEqual(actual, expected);
 
     actual = parseArgs(['wish.txt', 'hi.txt']);
-    expected = { options: [], fileNames: ['wish.txt', 'hi.txt'] };
+    expected = { option: { name: '-n', value: 10 }, fileNames: ['wish.txt', 'hi.txt'] };
     assert.deepStrictEqual(actual, expected);
   });
 
   it('Should work when option and value are combined', () => {
     const actual = parseArgs(['-c10', 'wish.txt']);
-    const expected = { options: [{ name: '-c', value: 10 }], fileNames: ['wish.txt'] };
+    const expected = { option: { name: '-c', value: 10 }, fileNames: ['wish.txt'] };
     assert.deepStrictEqual(actual, expected);
   });
 });

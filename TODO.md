@@ -4,6 +4,7 @@
 **TODO:**
 - [ ] Refactor `headMain`.
 - [ ] Handle if `-10` comes.
+- [ ] Refactor `validateArgs`.
 
 **MAYBE*:**
 
@@ -13,6 +14,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Use forEach in `validateArgs`
+- [x] validate in `parseArgs` only.
 - [x] set -n when no option is specified.
 - [x] validate the object recieving from `parseArgs`
 - [x] Change the validateArgs function.

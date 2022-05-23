@@ -1,6 +1,5 @@
 const { splitLines, joinLines } = require('./stringUtils.js');
 const { parseArgs } = require('./parseArgs.js');
-const { validateArgs } = require('./validateArgs.js');
 const { format } = require('./format.js');
 
 const extract = (lines, count) => lines.slice(0, count);
@@ -14,8 +13,8 @@ const head = (content, count, separator) => {
 const selectSeperator = (option) => option === '-c' ? '' : '\n';
 
 const headMain = (readFile, args) => {
-  const { fileNames, options } = parseArgs(args);
-  const option = validateArgs(options);
+  const { fileNames, option } = parseArgs(args);
+
   if (fileNames.length < 1) {
     return 'usage: head [-n lines | -c bytes] [file ...]';
   }

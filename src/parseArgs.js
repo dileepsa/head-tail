@@ -1,4 +1,5 @@
 const { createIterator } = require('./createIterator.js');
+const { validateArgs } = require('./validateArgs.js');
 
 const seperateNameValue = (arg) => [arg.slice(0, 2), arg.slice(2)];
 
@@ -28,8 +29,14 @@ const parseOptions = (argsIterator) => {
 const parseArgs = (args) => {
   const modifiedArgs = seperateArgs(args);
   const argsIterator = createIterator(modifiedArgs);
-  const options = parseOptions(argsIterator);
-  return options;
+  const parsedArgs = parseOptions(argsIterator);
+  validateArgs(parsedArgs.options);
+
+  parsedArgs.options.unshift({ name: '-n', value: 10 });
+
+  const { fileNames, options } = parsedArgs;
+  const option = options.pop();
+  return { fileNames, option };
 };
 
 exports.parseArgs = parseArgs;

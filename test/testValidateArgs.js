@@ -17,10 +17,4 @@ describe('validateArgs', () => {
       message: 'head: illegal-option -v'
     });
   });
-
-  it('Should return option when -n and value is given', () => {
-    const actual = validateArgs([{ name: '-n', value: 10 }]);
-    const expected = { name: '-n', value: 10 };
-    assert.deepStrictEqual(actual, expected);
-  });
 });
