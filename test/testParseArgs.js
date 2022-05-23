@@ -1,5 +1,6 @@
 const assert = require('assert');
-const { parseArgs, validateArgs, isOption, seperateArgs, seperateNameValue } = require('../src/parseArgs.js');
+const { parseArgs, validateArgs, parseOptions, seperateArgs, seperateNameValue } = require('../src/parseArgs.js');
+const { createIterator } = require('../src/createIterator.js');
 
 describe('parseArgs', () => {
   it('Should parse the args when -n is given', () => {
@@ -83,23 +84,6 @@ describe('validateArgs', () => {
   });
 });
 
-describe('isOption', () => {
-  it('Should return true when -n is given ', () => {
-    assert.strictEqual(isOption('-n'), true);
-    assert.strictEqual(isOption('-n1'), true);
-  });
-
-  it('Should return true when -c is given ', () => {
-    assert.strictEqual(isOption('-c'), true);
-    assert.strictEqual(isOption('-c1'), true);
-  });
-
-  it('Should return false when invalid option is given ', () => {
-    assert.strictEqual(isOption('-v'), false);
-    assert.strictEqual(isOption('-v1'), false);
-  });
-});
-
 describe('seperateArgs', () => {
   it('Should seperate the combined args', () => {
     const actual = seperateArgs(['-n10']);
@@ -131,5 +115,31 @@ describe('seperateNameValue', () => {
   it('Should seperate the option', () => {
     const actual = seperateNameValue('-n');
     assert.deepStrictEqual(actual, ['-n', '']);
+  });
+});
+
+describe('parseOptions', () => {
+  it('Should parse when one option is given', () => {
+    const argsIterator = createIterator(['-n', '10']);
+    const actual = parseOptions(argsIterator);
+    assert.deepStrictEqual(actual, { name: '-n', count: 10, fileNames: [] });
+  });
+
+  it('Should parse when option and filename is given', () => {
+    const argsIterator = createIterator(['-n', '10', 'hi']);
+    const actual = parseOptions(argsIterator);
+    assert.deepStrictEqual(actual, { name: '-n', count: 10, fileNames: ['hi'] });
+  });
+
+  it('Should parse when multiple options are given', () => {
+    const argsIterator = createIterator(['-c', '2', '-c', '5', 'hi']);
+    const actual = parseOptions(argsIterator);
+    assert.deepStrictEqual(actual, { name: '-c', count: 5, fileNames: ['hi'] });
+  });
+
+  it('Should parse when multiple files are given', () => {
+    const argsIterator = createIterator(['-c', '5', 'hi', 'bye']);
+    const actual = parseOptions(argsIterator);
+    assert.deepStrictEqual(actual, { name: '-c', count: 5, fileNames: ['hi', 'bye'] });
   });
 });

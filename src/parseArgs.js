@@ -17,11 +17,6 @@ const validateArgs = (args) => {
   }
 };
 
-const isOption = (word) => {
-  const regEx = /^-[n,c]/;
-  return regEx.test(word);
-};
-
 const seperateNameValue = (arg) => [arg.slice(0, 2), arg.slice(2)];
 
 const seperateArgs = (args) => {
@@ -29,12 +24,8 @@ const seperateArgs = (args) => {
     arg.startsWith('-') ? seperateNameValue(arg) : arg).filter((arg) => arg);
 };
 
-const parseArgs = (args) => {
-  const modifiedArgs = seperateArgs(args);
+const parseOptions = (argsIterator) => {
   const options = { name: '-n', count: 10, fileNames: [] };
-  validateArgs(modifiedArgs);
-
-  const argsIterator = createIterator(modifiedArgs);
   let currentArg = argsIterator.currentArg();
 
   while (!argsIterator.isEnd()) {
@@ -51,8 +42,17 @@ const parseArgs = (args) => {
   return options;
 };
 
+const parseArgs = (args) => {
+  const modifiedArgs = seperateArgs(args);
+  validateArgs(modifiedArgs);
+
+  const argsIterator = createIterator(modifiedArgs);
+  const options = parseOptions(argsIterator);
+  return options;
+};
+
 exports.parseArgs = parseArgs;
 exports.validateArgs = validateArgs;
-exports.isOption = isOption;
 exports.seperateArgs = seperateArgs;
 exports.seperateNameValue = seperateNameValue;
+exports.parseOptions = parseOptions;

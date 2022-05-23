@@ -1,10 +1,9 @@
 **WORKING:**
 - [ ] Refactor `parseArgs`.
+- [ ] Extract `parseOption` function from parseArgs.
 
 **TODO:**
 - [ ] Refactor `headMain`.
-- [ ] Remove isOption function.
-- [ ] Extract `parseOption` function from parseArgs.
 - [ ] Handle if `-10` comes.
 
 **MAYBE*:**
@@ -16,6 +15,7 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Remove isOption function.
 - [x] test `seperateNameValue` function.
 - [x] Test `seperateArgs`.
 - [x] Create the iterator in different file.
