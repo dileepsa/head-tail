@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const main = () => {
   try {
-    console.log(headMain(fs.readFileSync, process.argv.slice(2)));
+    headMain(fs.readFileSync, console.log, console.error, process.argv.slice(2));
   } catch (error) {
     console.error(error.message);
   }

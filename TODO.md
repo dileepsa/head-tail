@@ -1,11 +1,11 @@
 **WORKING:**
 - [ ] Refactor `parseArgs`.
-- [x] Refactor `validateArgs`.
-- [] Handle if `-10` comes.
 
 **TODO:**
 - [ ] Refactor `headMain`.
 - [ ] Test multiple files.
+- [ ] Write tests for `headFile`.
+
 
 **MAYBE*:**
 
@@ -15,6 +15,14 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Change the contract of `headMain` to take `log,error,readFile,args`.
+- [x] Change the formatter to take content and format it.
+- [x] Write print in a seperate file.
+- [x] Store content and `isError` for printing.
+- [x] Send mocked log and error functions to print.
+- [x] Use print function to display output and errors.
+- [x] Refactor `validateArgs`.
+- [x] Handle if `-10` comes.
 - [x] Throw error if `0` is a value.
 - [x] Write tests for validateFiles.
 - [x] validate the files in `validateArgs`

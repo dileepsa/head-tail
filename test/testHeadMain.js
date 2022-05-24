@@ -1,5 +1,6 @@
 const assert = require('assert');
 const { headMain } = require('../src/headLib.js');
+const { mockConsole } = require('./testDisplay.js');
 
 const mockReadFile = (expFileNames, contents, expEncoding) => {
   let index = 0;
@@ -13,38 +14,21 @@ const mockReadFile = (expFileNames, contents, expEncoding) => {
 };
 
 describe('headMain', () => {
-  it('Should display 1 line in a file', () => {
-    const mockedReadFile = mockReadFile(['./hello.txt'], ['hi'], 'utf-8');
-    const actual = headMain(mockedReadFile, ['./hello.txt']);
-    assert.strictEqual(actual, 'hi');
+  it('Should return 0 when there are no errors', () => {
+    const mockedReadFile = mockReadFile(['hi.txt'], ['hi'], 'utf-8');
+    const mockedLog = mockConsole(['==> hi.txt <==\nhi\n']);
+    const mockedError = mockConsole(['bye']);
+    const args = ['hi.txt'];
+    const actual = headMain(mockedReadFile, mockedLog, mockedError, args);
+    assert.strictEqual(actual, 0);
   });
 
-  it('Should display 2 lines in a file', () => {
-    const mockedReadFile = mockReadFile(['./hello.txt'], ['bye\nhi'], 'utf-8');
-    const actual = headMain(mockedReadFile, ['./hello.txt']);
-    assert.strictEqual(actual, 'bye\nhi');
-  });
-
-  it('Should display 1 line in two files', () => {
-    const mockedReadFile = mockReadFile(['./hello.txt', './bye.txt'], ['hi', 'bye'], 'utf-8');
-    const actual = headMain(mockedReadFile, ['./hello.txt', './bye.txt']);
-    const expected = '==> ./hello.txt <==\nhi\n\n==> ./bye.txt <==\nbye\n';
-    assert.strictEqual(actual, expected);
-  });
-
-  it('Should display 3 characters in a file', () => {
-    const mockedReadFile = mockReadFile(['./hello.txt'], ['bye'], 'utf-8');
-    const actual = headMain(mockedReadFile, ['-c', '3', './hello.txt']);
-    assert.strictEqual(actual, 'bye');
-  });
-
-  it('Should throw an error if file not found', () => {
-    const mockedReadFile = mockReadFile(['./hello.txt'], ['bye']);
-    const actual = () => headMain(mockedReadFile, ['-c', '3', 'missingFile']);
-    assert.throws(actual, {
-      name: 'FileReadError',
-      message: 'Unable to read missingFile',
-      fileName: 'missingFile'
-    });
+  it('Should return 1 when there are errors', () => {
+    const mockedReadFile = mockReadFile(['bye.txt'], ['hi'], 'utf-8');
+    const mockedLog = mockConsole(['']);
+    const mockedError = mockConsole(['head: hi: No such file or directory']);
+    const args = ['hi'];
+    const actual = headMain(mockedReadFile, mockedLog, mockedError, args);
+    assert.strictEqual(actual, 1);
   });
 });
