@@ -9,10 +9,10 @@
 - [ ] Test multiple files.
 - [ ] Write tests for `headFile`.
 - [ ] Write tests for `validators`.
-- [ ] Send usage when no `options,files` specified.
 
 **TAIL:**
 
+- [ ] Use differnet parser in tail.
 
 
 **MAYBE*:**
@@ -23,6 +23,7 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Send usage when no `options,files` specified.
 - [x] Write a sample test for tail.
 - [x] Write function for lines .
 - [x] Write function for chars.

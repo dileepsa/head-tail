@@ -42,21 +42,32 @@ const assertIllegalOption = (option) => {
   }
 };
 
+const assertFiles = (files) => {
+  if (isEmpty(files)) {
+    throw noFileSpecifiedError();
+  }
+};
+
 const assertInvalidCombination = (flag1, flag2) => {
   if (flag1 !== flag2) {
     throw invalidComboError();
   }
 };
 
+const assertEmpty = (args) => {
+  if (isEmpty(args.fileNames) && isEmpty(args.options)) {
+    throw error('invalidOptions', usage());
+  }
+};
+
 const validateArgs = (args) => {
   const options = args.options;
+  assertEmpty(args);
+  assertFiles(args.fileNames);
   if (options.length < 1) {
     return;
   }
 
-  if (isEmpty(args.fileNames)) {
-    throw noFileSpecifiedError();
-  }
   options.forEach(assertIllegalOption);
   const firstSwitch = options[0].name;
   options.forEach((option) =>
