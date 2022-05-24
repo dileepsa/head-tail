@@ -1,11 +1,12 @@
 **WORKING:**
 - [ ] Refactor `parseArgs`.
+- [] Refactor `validateArgs`.
 
 **TODO:**
 - [ ] Refactor `headMain`.
 - [ ] Test multiple files.
 - [ ] Write tests for `headFile`.
-
+- [ ] Write tests for `validators`.
 
 **MAYBE*:**
 
@@ -21,7 +22,6 @@
 - [x] Store content and `isError` for printing.
 - [x] Send mocked log and error functions to print.
 - [x] Use print function to display output and errors.
-- [x] Refactor `validateArgs`.
 - [x] Handle if `-10` comes.
 - [x] Throw error if `0` is a value.
 - [x] Write tests for validateFiles.

@@ -1,7 +1,6 @@
 const { validateArgs,
-  validateFiles,
-  validateInvalidCombination,
-  validateIllegalOption,
+  assertInvalidCombination,
+  assertIllegalOption,
   isOptionValid, isValueInValid } = require('../src/validateArgs.js');
 const assert = require('assert');
 
@@ -36,24 +35,9 @@ describe('validateArgs', () => {
   });
 });
 
-describe('validateFiles', () => {
-  it('Should throw error if no files specified', () => {
-    const actual = () => validateFiles([]);
-    assert.throws(actual, {
-      name: 'noFilesSpecified',
-      message: 'usage: head [-n lines | -c bytes] [file ...]'
-    });
-  });
-
-  it('Should return undefined if files present', () => {
-    const actual = validateFiles(['hi']);
-    assert.strictEqual(actual, undefined);
-  });
-});
-
-describe('validateInvalidCombination', () => {
+describe('assertInvalidCombination', () => {
   it('Should throw error if two flags are not same', () => {
-    const actual = () => validateInvalidCombination('-n', '-c');
+    const actual = () => assertInvalidCombination('-n', '-c');
     assert.throws(actual, {
       name: 'invalidOptions',
       message: "head: can't combine line and byte counts"
@@ -61,14 +45,14 @@ describe('validateInvalidCombination', () => {
   });
 
   it('Should return undefined if flags are same', () => {
-    const actual = validateInvalidCombination('-n', '-n');
+    const actual = assertInvalidCombination('-n', '-n');
     assert.strictEqual(actual, undefined);
   });
 });
 
-describe('validateIllegalOption', () => {
+describe('assertIllegalOption', () => {
   it('Should throw error when option is -v', () => {
-    const actual = () => validateIllegalOption({ name: '-v', value: 10 });
+    const actual = () => assertIllegalOption({ name: '-v', value: 10 });
     assert.throws(actual, {
       name: 'invalidOption',
       message: 'head: illegal-option -- v'
@@ -76,7 +60,7 @@ describe('validateIllegalOption', () => {
   });
 
   it('Should throw error for flag -n and value 0', () => {
-    const actual = () => validateIllegalOption({ name: '-n', value: 0 });
+    const actual = () => assertIllegalOption({ name: '-n', value: 0 });
     assert.throws(actual, {
       name: 'illegal-count',
       message: 'head: illegal line count -- 0'
@@ -84,7 +68,7 @@ describe('validateIllegalOption', () => {
   });
 
   it('Should throw error for flag -c and value 0', () => {
-    const actual = () => validateIllegalOption({ name: '-c', value: 0 });
+    const actual = () => assertIllegalOption({ name: '-c', value: 0 });
     assert.throws(actual, {
       name: 'illegal-count',
       message: 'head: illegal byte count -- 0'
@@ -92,7 +76,7 @@ describe('validateIllegalOption', () => {
   });
 
   it('Should return undefined if -n is given', () => {
-    const actual = validateIllegalOption({ name: '-n', value: 10 });
+    const actual = assertIllegalOption({ name: '-n', value: 10 });
     assert.strictEqual(actual, undefined);
   });
 });
@@ -116,12 +100,12 @@ describe('isOptionValid', () => {
 
 describe('isValueInValid', () => {
   it('Should return true when value is 0', () => {
-    const actual = isValueInValid({ name: '-c', value: 0 });
+    const actual = isValueInValid(0);
     assert.strictEqual(actual, true);
   });
 
   it('Should return false when value is 10', () => {
-    const actual = isValueInValid({ name: '-c', value: 10 });
+    const actual = isValueInValid(10);
     assert.strictEqual(actual, false);
   });
 });
