@@ -3,11 +3,18 @@
 - [ ] Change the directory structure.
 
 **TODO:**
+
+**HEAD:**
 - [ ] Refactor `headMain`.
 - [ ] Test multiple files.
 - [ ] Write tests for `headFile`.
 - [ ] Write tests for `validators`.
 - [ ] Send usage when no `options,files` specified.
+
+**TAIL:**
+
+
+
 **MAYBE*:**
 
 **MUST:**
@@ -16,6 +23,9 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Write a sample test for tail.
+- [x] Write function for lines .
+- [x] Write function for chars.
 - [x] Refactor `validateArgs`.
 - [x] Change the contract of `headMain` to take `log,error,readFile,args`.
 - [x] Change the formatter to take content and format it.
