@@ -1,7 +1,7 @@
 const { validateArgs,
   assertInvalidCombination,
   assertIllegalOption,
-  isOptionValid, isValueInValid } = require('../src/validateArgs.js');
+  isOptionValid, isValueInValid } = require('../../src/head/validateArgs.js');
 const assert = require('assert');
 
 describe('validateArgs', () => {

@@ -1,6 +1,6 @@
 const assert = require('assert');
-const { head, extract } = require('../src/headLib.js');
-const { splitLines, joinLines } = require('../src/stringUtils.js');
+const { head, extract } = require('../../src/head/headLib.js');
+const { splitLines, joinLines } = require('../../src/head/stringUtils.js');
 
 describe('head', () => {
   it('Should give 1 line', () => {

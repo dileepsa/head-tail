@@ -1,13 +1,13 @@
 **WORKING:**
 - [ ] Refactor `parseArgs`.
-- [] Refactor `validateArgs`.
+- [ ] Change the directory structure.
 
 **TODO:**
 - [ ] Refactor `headMain`.
 - [ ] Test multiple files.
 - [ ] Write tests for `headFile`.
 - [ ] Write tests for `validators`.
-
+- [ ] Send usage when no `options,files` specified.
 **MAYBE*:**
 
 **MUST:**
@@ -16,6 +16,7 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Refactor `validateArgs`.
 - [x] Change the contract of `headMain` to take `log,error,readFile,args`.
 - [x] Change the formatter to take content and format it.
 - [x] Write print in a seperate file.

@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { display } = require('../src/display.js');
+const { display } = require('../../src/head/display.js');
 
 const mockConsole = function (expContents) {
   let index = 0;

@@ -1,6 +1,6 @@
 const assert = require('assert');
-const { parseArgs, parseOptions, seperateArgs, seperateNameValue } = require('../src/parseArgs.js');
-const { createIterator } = require('../src/createIterator.js');
+const { parseArgs, parseOptions, seperateArgs, seperateNameValue } = require('../../src/head/parseArgs.js');
+const { createIterator } = require('../../src/head/createIterator.js');
 
 describe('parseArgs', () => {
   it('Should parse the args when -n is given', () => {

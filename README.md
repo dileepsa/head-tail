@@ -14,3 +14,18 @@ head file1 file2
   Display the lines in file1 and file2.
 
 ```
+
+```
+tail file
+  display the last part of a file.
+
+  tail -n count [...files]
+  display last `count` lines in a file.
+  
+  tail -c count [...files]
+  display last `count` bytes in a file.
+
+  tail file1 file2
+  Display the last lines in specified files.
+  
+```

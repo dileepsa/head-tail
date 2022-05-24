@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { format } = require('../src/format.js');
+const { format } = require('../../src/head/format.js');
 
 describe('format', () => {
   it('Should format when one file name is given', () => {
