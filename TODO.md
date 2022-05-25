@@ -13,6 +13,7 @@
 
 - [ ] Use differnet parser in tail.
 - [ ] Send `formatArgs` to `parseArgs`.
+- [ ] Implement `formatArgs`.
 **MAYBE*:**
 
 **MUST:**

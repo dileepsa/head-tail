@@ -9,19 +9,30 @@ const mergeOptions = function (option1, option2) {
   return { ...option1, ...option2 };
 };
 
+const seperateNameValue = (arg) => {
+  return isFinite(arg) ? ['-n', '' + Math.abs(arg)] :
+    [arg.slice(0, 2), arg.slice(2)];
+};
+
+const seperateArgs = (args) => {
+  return args.flatMap((arg) =>
+    arg.startsWith('-') ? seperateNameValue(arg) : arg).filter((arg) => arg);
+};
+
 const parseArgs = (parseOptions, args) => {
+  const allOptions = seperateArgs(args);
   let options = {};
   const prevOptions = [];
   let index = 0;
-  while (isOption(args[index])) {
-    const option = parseOptions.find(({ flag }) => flag === args[index]);
+  while (isOption(allOptions[index])) {
+    const option = parseOptions.find(({ flag }) => flag === allOptions[index]);
     if (!option) {
-      throw `invalid option -- ${args[index]}`;
+      throw `invalid option -- ${allOptions[index]}`;
     }
     const flag = option.flag;
     let value = null;
     if (option.valueNeeded) {
-      value = +args[index + 1];
+      value = +allOptions[index + 1];
       index++;
     }
     option.validate(prevOptions);
@@ -29,7 +40,7 @@ const parseArgs = (parseOptions, args) => {
     prevOptions.push(flag);
     index++;
   }
-  const fileNames = args.slice(index);
+  const fileNames = allOptions.slice(index);
   return { options, fileNames };
 };
 
