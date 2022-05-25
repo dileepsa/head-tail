@@ -13,7 +13,12 @@ const getChars = (content, count) => {
 
 const tailMain = (readFile, args) => {
   const { fileNames, options } = parseArgs(parseOptions, args);
-  const content = readFile(fileNames[0], 'utf-8');
+  let content;
+  try {
+    content = readFile(fileNames[0], 'utf-8');
+  } catch (error) {
+    throw `tail: ${fileNames[0]}: No such file or directory`;
+  }
   const fn = options.name === '-n' ? getLines : getChars;
   return fn(content, options.value);
 };

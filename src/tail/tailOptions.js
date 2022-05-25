@@ -20,7 +20,7 @@ const parseNoption = (value) => {
 };
 
 const parseCoption = (value) => {
-  return { name: '-n', value };
+  return { name: '-c', value };
 };
 
 const parseOptions = [

@@ -14,9 +14,8 @@
 - [ ] Use differnet parser in tail.
 - [ ] Write `tailMain` function.
 - [ ] Add `main` in tail.js.
-- [ ] Send `parseOptions` to `parseArgs`.
 - [ ] Send `formatArgs` to `parseArgs`.
-- [ ] Write `try catch` in tailMain.
+
 **MAYBE*:**
 
 **MUST:**
@@ -25,6 +24,9 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Send `parseOptions` to `parseArgs` from `tailMain`.
+- [x] Write try catch in `tail.js`.
+- [x] Write `try catch` in tailMain.
 - [x] Change the contract of `tailMain` to recieve args.
 - [x] Extract data into seperate file.
 - [x] Pass `readFile` to `tailMain`.
