@@ -14,11 +14,11 @@
 
 - [ ] Use differnet parser in tail.
 - [ ] Write `tailMain` function.
-- [ ] Pass `readFile` to `tailMain`.
 - [ ] Add `main` in tail.js.
 - [ ] Send `parseOptions` to `parseArgs`.
 - [ ] Send `formatArgs` to `parseArgs`.
-
+- [ ] Write `try catch` in tailMain.
+- [ ] Change the contract of `tailMain` to recieve args.
 **MAYBE*:**
 
 **MUST:**
@@ -27,6 +27,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Extract data into seperate file.
+- [x] Pass `readFile` to `tailMain`.
 - [x] Send usage when no `options,files` specified.
 - [x] Write a sample test for tail.
 - [x] Write function for lines .

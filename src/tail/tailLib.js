@@ -9,6 +9,7 @@ const getChars = (content, count) => {
 };
 
 const tailMain = (readFile, option, fileName) => {
+
   const content = readFile(fileName, 'utf-8');
   const fn = option.name === '-n' ? getLines : getChars;
   return fn(content, option.count);

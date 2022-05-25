@@ -1,53 +1,6 @@
 /* eslint-disable no-loop-func */
 /* eslint-disable max-statements */
-const assertOptions = (invalid) => {
-  return function (options) {
-    options.forEach((option) => {
-      if (invalid.includes(option)) {
-        throw 'usage: tail [-F | -f | -r] [-q] [-b # | -c # | -n #] [file ...]';
-      }
-    });
-  };
-};
-
-const parseROption = () => {
-  return { reverse: true };
-};
-
-const parseQOption = () => {
-  return { headersRequired: false };
-};
-
-const parseOptions = [
-  {
-    flag: '-n',
-    valueNeeded: true,
-    headersRequired: true,
-    parse: value => +value,
-    validate: assertOptions(['-c']),
-  },
-  {
-    flag: '-c',
-    valueNeeded: true,
-    headersRequired: true,
-    parse: value => +value,
-    validate: assertOptions(['-n']),
-  },
-  {
-    flag: '-r',
-    headersRequired: true,
-    valueNeeded: false,
-    parse: parseROption,
-    validate: assertOptions([]),
-  },
-  {
-    flag: '-q',
-    headersRequired: false,
-    valueNeeded: false,
-    parse: parseQOption,
-    validate: assertOptions([]),
-  }
-];
+const { parseOptions } = require('./tailOptions.js');
 
 const isOption = (text) => {
   return (text.startsWith('-') || text.startsWith('+')) && text.length > 1;
@@ -58,7 +11,7 @@ const mergeOptions = function (option1, option2) {
 };
 
 const parseArgs = (parseOptions) => {
-  const args = ['-n', '10', '-r', '-n', '5', 'file'];
+  const args = ['-n', '10', '-r', '-q', '-n', '5', 'file'];
   let options = {};
   const prevOptions = [];
   let index = 0;
@@ -70,15 +23,17 @@ const parseArgs = (parseOptions) => {
     const flag = option.flag;
     let value = null;
     if (option.valueNeeded) {
-      value = option.parse(args[index + 1]);
+      value = +args[index + 1];
       index++;
     }
     option.validate(prevOptions);
-    options = mergeOptions(options, { flag, value });
+    options = mergeOptions(options, option.parse(value));
     prevOptions.push(flag);
     index++;
   }
-  return options;
+  const fileNames = args.slice(index);
+  return { options, fileNames };
 };
 
+exports.parseArgs = parseArgs;
 console.log(parseArgs(parseOptions));
