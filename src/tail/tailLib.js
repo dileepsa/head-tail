@@ -1,5 +1,7 @@
 const { parseArgs } = require("./parseArgs");
 const { parseOptions } = require('./tailOptions.js');
+const { format } = require('./format.js');
+const { display } = require('../head/display.js');
 
 const getLines = (content, count) => {
   const lines = content.split('\n');
@@ -11,16 +13,40 @@ const getChars = (content, count) => {
   return lines.slice(-count).join('');
 };
 
+const tailFile = (readFile, fileName, fnToCall, option) => {
+  let content;
+  let isError = false;
+  try {
+    content = readFile(fileName, 'utf-8');
+  } catch (error) {
+    isError = true;
+    return {
+      fileName,
+      content: {
+        name: 'FileReadError',
+        message: `tail: ${fileName}: No such file or directory`
+      },
+      isError
+    };
+  }
+  return { fileName, content: fnToCall(content, option.value), isError };
+};
+
 const tailMain = (readFile, args) => {
   const { fileNames, options } = parseArgs(parseOptions, args);
-  let content;
-  try {
-    content = readFile(fileNames[0], 'utf-8');
-  } catch (error) {
-    throw `tail: ${fileNames[0]}: No such file or directory`;
-  }
   const fn = options.name === '-n' ? getLines : getChars;
-  return fn(content, options.value);
+  const contents = fileNames.map((fileName) => {
+    return tailFile(readFile, fileName, fn, options);
+  });
+
+  const formatted = contents.map((record) => {
+    if (record.isError) {
+      return record;
+    }
+    record.content = format(record.content, record.fileName);
+    return record;
+  });
+  return display(console.log, console.error, formatted);
 };
 
 exports.tailMain = tailMain;

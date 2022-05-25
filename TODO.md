@@ -15,6 +15,7 @@
 - [ ] Write `tailMain` function.
 - [ ] Add `main` in tail.js.
 - [ ] Send `formatArgs` to `parseArgs`.
+- [ ] Implement multiple files.
 
 **MAYBE*:**
 
