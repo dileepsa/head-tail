@@ -13,8 +13,6 @@
 
 - [ ] Use differnet parser in tail.
 - [ ] Send `formatArgs` to `parseArgs`.
-- [ ] Write tests for `tailMain`.
-
 **MAYBE*:**
 
 **MUST:**
@@ -23,6 +21,8 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Write tests for `tailFile`.
+- [x] Write tests for `tailMain`.
 - [x] `tailMain` should take `log,error`.
 - [x] Write `tailMain` function.
 - [x] Add `main` in tail.js.

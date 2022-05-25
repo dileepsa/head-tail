@@ -23,7 +23,7 @@ const tailFile = (readFile, fileName, fnToCall, option) => {
     return {
       fileName,
       content: {
-        name: 'FileReadError',
+        name: 'fileReadError',
         message: `tail: ${fileName}: No such file or directory`
       },
       isError
@@ -52,3 +52,4 @@ const tailMain = (readFile, log, error, args) => {
 exports.tailMain = tailMain;
 exports.getLines = getLines;
 exports.getChars = getChars;
+exports.tailFile = tailFile;

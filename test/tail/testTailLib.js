@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { getLines, getChars, tailMain } = require('../../src/tail/tailLib.js');
+const { getLines, getChars, tailMain, tailFile } = require('../../src/tail/tailLib.js');
 const { mockConsole } = require('../head/testDisplay');
 const mockReadFile = (expFileNames, contents, expEncoding) => {
   let index = 0;
@@ -73,5 +73,44 @@ describe('tailMain', () => {
     const args = ['-c', '1', 'hi'];
     const actual = tailMain(mockedReadFile, mockedLog, mockedError, args);
     assert.strictEqual(actual, 1);
+  });
+});
+
+describe('tailFile', () => {
+  it('Should return obj with isError false with file hi.txt ', () => {
+    const mockedReadFile = mockReadFile(['hi.txt'], ['hi'], 'utf-8');
+    const fn = (x) => x;
+    const option = { name: '-n', value: 1 };
+    const actual = tailFile(mockedReadFile, 'hi.txt', fn, option);
+    const expected = { fileName: 'hi.txt', content: 'hi', isError: false };
+    assert.deepStrictEqual(actual, expected);
+  });
+
+  it('Should return obj with isError true with file hi', () => {
+    const mockedReadFile = mockReadFile(['hi'], ['hi'], 'utf-8');
+    const fn = (x) => x;
+    const option = { name: '-n', value: 1 };
+    const actual = tailFile(mockedReadFile, 'hi.txt', fn, option);
+    const expected = {
+      fileName: 'hi.txt', content: {
+        name: 'fileReadError',
+        message: "tail: hi.txt: No such file or directory",
+      }, isError: true
+    };
+    assert.deepStrictEqual(actual, expected);
+  });
+
+  it('Should return obj with isError true with file bye', () => {
+    const mockedReadFile = mockReadFile(['bye'], ['hi'], 'utf-8');
+    const fn = (x) => x;
+    const option = { name: '-n', value: 1 };
+    const actual = tailFile(mockedReadFile, 'bye.txt', fn, option);
+    const expected = {
+      fileName: 'bye.txt', content: {
+        name: 'fileReadError',
+        message: "tail: bye.txt: No such file or directory",
+      }, isError: true
+    };
+    assert.deepStrictEqual(actual, expected);
   });
 });
