@@ -1,4 +1,12 @@
+# HEAD
+
+```Head displays the first count lines or bytes of each of the specified files, If count is omitted ,it defaults to 10.```
+
+**SYNTAX**
+
 `head -n count | -c bytes file...`
+
+**DESCRIPTION**
 
 ```
 head file 
@@ -14,6 +22,16 @@ head file1 file2
   Display the lines in file1 and file2.
 
 ```
+
+# TAIL
+
+```Tail displays the last count lines or bytes of each of the specified files, If count is omitted ,it defaults to 10```
+
+**SYNTAX**
+
+```tail [-r] [-q] [-c number | -n number] [file ...]```
+
+**DESCRIPTION**
 
 ```
 tail file
