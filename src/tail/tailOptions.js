@@ -15,12 +15,12 @@ const parseQOption = () => {
   return { headersRequired: false };
 };
 
-const parseNoption = (limit) => {
-  return { name: '-n', limit };
+const parseNoption = (value) => {
+  return { name: '-n', value };
 };
 
-const parseCoption = (limit) => {
-  return { name: '-n', limit };
+const parseCoption = (value) => {
+  return { name: '-n', value };
 };
 
 const parseOptions = [

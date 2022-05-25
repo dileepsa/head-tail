@@ -1,6 +1,5 @@
 **WORKING:**
 - [ ] Refactor `parseArgs`.
-- [ ] Change the directory structure.
 
 **TODO:**
 
@@ -18,7 +17,6 @@
 - [ ] Send `parseOptions` to `parseArgs`.
 - [ ] Send `formatArgs` to `parseArgs`.
 - [ ] Write `try catch` in tailMain.
-- [ ] Change the contract of `tailMain` to recieve args.
 **MAYBE*:**
 
 **MUST:**
@@ -27,8 +25,10 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Change the contract of `tailMain` to recieve args.
 - [x] Extract data into seperate file.
 - [x] Pass `readFile` to `tailMain`.
+- [x] Change the directory structure.
 - [x] Send usage when no `options,files` specified.
 - [x] Write a sample test for tail.
 - [x] Write function for lines .

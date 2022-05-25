@@ -59,13 +59,15 @@ describe('getChars', () => {
 describe('tailMain', () => {
   it('Should return last 1 line in a file', () => {
     const mockedReadFile = mockReadFile(['hi.txt'], ['hi'], 'utf-8');
-    const actual = tailMain(mockedReadFile, { name: '-n', count: 1 }, 'hi.txt');
+    const args = ['-n', '1', 'hi.txt'];
+    const actual = tailMain(mockedReadFile, args);
     assert.strictEqual(actual, 'hi');
   });
 
   it('Should return last 1 character in a file', () => {
     const mockedReadFile = mockReadFile(['hi.txt'], ['h'], 'utf-8');
-    const actual = tailMain(mockedReadFile, { name: '-c', count: 1 }, 'hi.txt');
+    const args = ['-c', '1', 'hi.txt'];
+    const actual = tailMain(mockedReadFile, args);
     assert.strictEqual(actual, 'h');
   });
 });
