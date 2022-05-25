@@ -1,6 +1,6 @@
 const assert = require('assert');
 const { getLines, getChars, tailMain } = require('../../src/tail/tailLib.js');
-
+const { mockConsole } = require('../head/testDisplay');
 const mockReadFile = (expFileNames, contents, expEncoding) => {
   let index = 0;
   return function (fileName, encoding) {
@@ -59,15 +59,19 @@ describe('getChars', () => {
 describe('tailMain', () => {
   it('Should return last 1 line in a file', () => {
     const mockedReadFile = mockReadFile(['hi.txt'], ['hi'], 'utf-8');
+    const mockedLog = mockConsole(['==> hi.txt <==\nhi\n']);
+    const mockedError = mockConsole(['bye']);
     const args = ['-n', '1', 'hi.txt'];
-    const actual = tailMain(mockedReadFile, args);
-    assert.strictEqual(actual, 'hi');
+    const actual = tailMain(mockedReadFile, mockedLog, mockedError, args);
+    assert.strictEqual(actual, 0);
   });
 
   it('Should return last 1 character in a file', () => {
     const mockedReadFile = mockReadFile(['hi.txt'], ['h'], 'utf-8');
-    const args = ['-c', '1', 'hi.txt'];
-    const actual = tailMain(mockedReadFile, args);
-    assert.strictEqual(actual, 'h');
+    const mockedLog = mockConsole(['']);
+    const mockedError = mockConsole(['tail: hi: No such file or directory']);
+    const args = ['-c', '1', 'hi'];
+    const actual = tailMain(mockedReadFile, mockedLog, mockedError, args);
+    assert.strictEqual(actual, 1);
   });
 });

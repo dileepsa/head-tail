@@ -12,10 +12,8 @@
 **TAIL:**
 
 - [ ] Use differnet parser in tail.
-- [ ] Write `tailMain` function.
-- [ ] Add `main` in tail.js.
 - [ ] Send `formatArgs` to `parseArgs`.
-- [ ] Implement multiple files.
+- [ ] Write tests for `tailMain`.
 
 **MAYBE*:**
 
@@ -25,6 +23,10 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] `tailMain` should take `log,error`.
+- [x] Write `tailMain` function.
+- [x] Add `main` in tail.js.
+- [x] Implement multiple files.
 - [x] Send `parseOptions` to `parseArgs` from `tailMain`.
 - [x] Write try catch in `tail.js`.
 - [x] Write `try catch` in tailMain.

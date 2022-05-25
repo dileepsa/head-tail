@@ -32,7 +32,7 @@ const tailFile = (readFile, fileName, fnToCall, option) => {
   return { fileName, content: fnToCall(content, option.value), isError };
 };
 
-const tailMain = (readFile, args) => {
+const tailMain = (readFile, log, error, args) => {
   const { fileNames, options } = parseArgs(parseOptions, args);
   const fn = options.name === '-n' ? getLines : getChars;
   const contents = fileNames.map((fileName) => {
@@ -46,7 +46,7 @@ const tailMain = (readFile, args) => {
     record.content = format(record.content, record.fileName);
     return record;
   });
-  return display(console.log, console.error, formatted);
+  return display(log, error, formatted);
 };
 
 exports.tailMain = tailMain;
