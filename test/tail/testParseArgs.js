@@ -43,6 +43,16 @@ describe('parseArgs', () => {
     assert.deepStrictEqual(actual, expected);
   });
 
+  it('Should return default when no options are given', () => {
+    const args = ['file'];
+    const parseOptions = [
+      { flag: '-n', valueNeeded: true, headersRequired: true, parse: parseNOption, validate: () => { } }
+    ];
+    const actual = parseArgs(parseOptions, args);
+    const expected = { fileNames: ['file'], options: { name: '-n', value: 10 } };
+    assert.deepStrictEqual(actual, expected);
+  });
+
   it('Should throw error when -x is given', () => {
     const args = ['-x', '2', 'file'];
     const parseOptions = [

@@ -21,7 +21,7 @@ const seperateArgs = (args) => {
 
 const parseArgs = (parseOptions, args) => {
   const allOptions = seperateArgs(args);
-  let options = {};
+  let options = { name: '-n', value: 10 };
   const prevOptions = [];
   let index = 0;
   while (isOption(allOptions[index])) {

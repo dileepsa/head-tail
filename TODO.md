@@ -14,7 +14,6 @@
 - [ ] Use differnet parser in tail.
 - [ ] Send `formatArgs` to `parseArgs`.
 - [ ] Implement `formatArgs`.
-- [ ] Set the default of -n to 10.
 **MAYBE*:**
 
 **MUST:**
@@ -23,6 +22,7 @@
 - [ ] Dont write code when i dont have clarity.
 
 **DONE:**
+- [x] Set the default of -n to 10.
 - [x] Extract functions from `parseOptions`.
 - [x] Write tests for `tailFile`.
 - [x] Write tests for `tailMain`.
