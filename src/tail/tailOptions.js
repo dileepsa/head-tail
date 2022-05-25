@@ -15,45 +15,35 @@ const parseQOption = () => {
   return { headersRequired: false };
 };
 
-const parseNoption = (value) => {
+const parseNOption = (value) => {
   return { name: '-n', value };
 };
 
-const parseCoption = (value) => {
+const parseCOption = (value) => {
   return { name: '-c', value };
 };
 
-const parseOptions = [
-  {
-    flag: '-n',
-    valueNeeded: true,
-    headersRequired: true,
-    parse: parseNoption,
-    validate: assertOptions(['-c'
-    ]),
-  },
-  {
-    flag: '-c',
-    valueNeeded: true,
-    headersRequired: true,
-    parse: parseCoption,
-    validate: assertOptions(['-n'
-    ]),
-  },
-  {
-    flag: '-r',
-    headersRequired: true,
-    valueNeeded: false,
-    parse: parseROption,
-    validate: assertOptions([]),
-  },
-  {
-    flag: '-q',
-    headersRequired: false,
-    valueNeeded: false,
-    parse: parseQOption,
-    validate: assertOptions([]),
-  }
-];
+const createObject = (flag, valueNeeded, headersRequired, parse, validate) => {
+  return { flag, valueNeeded, headersRequired, parse, validate };
+};
+
+const lineOption = () => {
+  return createObject('-n', true, true, parseNOption, assertOptions(['-c']));
+};
+
+const byteOption = () => {
+  return createObject('-c', true, true, parseCOption, assertOptions(['-n']));
+};
+
+const reverseOption = () => {
+  return createObject('-r', false, true, parseROption, assertOptions([]));
+};
+
+const quietOption = () => {
+  return createObject('-q', false, false, parseQOption, assertOptions([]));
+};
+
+const parseOptions =
+  [lineOption(), byteOption(), reverseOption(), quietOption()];
 
 exports.parseOptions = parseOptions;
