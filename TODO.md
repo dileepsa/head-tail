@@ -1,124 +1,147 @@
-**WORKING:**
-- [ ] Refactor `parseArgs`.
+# TAIL
 
-**TODO:**
+ - **WORKING:**
 
-**HEAD:**
-- [ ] Refactor `headMain`.
-- [ ] Test multiple files.
-- [ ] Write tests for `headFile`.
-- [ ] Write tests for `validators`.
+    - [ ] Extract `getOption` function from `parseArgs`.
 
-**TAIL:**
+ - **TODO:**
 
-- [ ] Use differnet parser in tail.
-- [ ] Send `formatArgs` to `parseArgs`.
-- [ ] Implement `formatArgs`.
-**MAYBE*:**
+    - [ ] Use differnet parser in tail.
+    - [ ] Send `formatArgs` to `parseArgs`.
+    - [ ] Implement `formatArgs`.
+    - [ ] write function for to get reversed content for `-r`.
+    - [ ] Dont format when the headersRequired set to `false`.
+    - [ ] Dont format when file length is 1.
+    - [ ] Format when -10 and +10 is given.
 
-**MUST:**
-- [ ] Review code after function becomes 4 lines.
-- [ ] First hardcode the values.
-- [ ] Dont write code when i dont have clarity.
+ - **MAYBE*:**
 
-**DONE:**
-- [x] Set the default of -n to 10.
-- [x] Extract functions from `parseOptions`.
-- [x] Write tests for `tailFile`.
-- [x] Write tests for `tailMain`.
-- [x] `tailMain` should take `log,error`.
-- [x] Write `tailMain` function.
-- [x] Add `main` in tail.js.
-- [x] Implement multiple files.
-- [x] Send `parseOptions` to `parseArgs` from `tailMain`.
-- [x] Write try catch in `tail.js`.
-- [x] Write `try catch` in tailMain.
-- [x] Change the contract of `tailMain` to recieve args.
-- [x] Extract data into seperate file.
-- [x] Pass `readFile` to `tailMain`.
-- [x] Change the directory structure.
-- [x] Send usage when no `options,files` specified.
-- [x] Write a sample test for tail.
-- [x] Write function for lines .
-- [x] Write function for chars.
-- [x] Refactor `validateArgs`.
-- [x] Change the contract of `headMain` to take `log,error,readFile,args`.
-- [x] Change the formatter to take content and format it.
-- [x] Write print in a seperate file.
-- [x] Store content and `isError` for printing.
-- [x] Send mocked log and error functions to print.
-- [x] Use print function to display output and errors.
-- [x] Handle if `-10` comes.
-- [x] Throw error if `0` is a value.
-- [x] Write tests for validateFiles.
-- [x] validate the files in `validateArgs`
-- [x] Change the error message in `validateArgs`.
-- [x] Use forEach in `validateArgs`
-- [x] validate in `parseArgs` only.
-- [x] set -n when no option is specified.
-- [x] validate the object recieving from `parseArgs`
-- [x] Change the validateArgs function.
-- [x] Extract validateArgs into a different file.
-- [x] Extract `parseOption` function from parseArgs.
-- [x] Change the tests of `parseArgs`
-- [x] Consider changing the contract of `parseargs` to send all the options and then validate.
-- [x] Remove isOption function.
-- [x] test `seperateNameValue` function.
-- [x] Test `seperateArgs`.
-- [x] Create the iterator in different file.
-- [x] Consider the iterator method.
-- [x] Change the mock function to work on multiple files.
-- [x] Show usage when no files specified.
-- [x] change the test cases for head main(send arrays).
-- [x] Change the `format` in multiple files test case.
-- [x] connect formatter in headMain.
-- [x] write a formatter.
-- [x] format differntly when one one file is given.
-- [x] write formatter in a differnet file.
-- [x] use map for multiple files.
-- [x] Make head accept multiple files.
-- [x] Throw error if files are not specified.
-- [x] Send errors to std error.
-- [x] export `splitlines` and `joinlines`.
-- [x] Throw error if 2 different options are specified.
-- [x] Make `parseArgs` work when options are without space.
-- [x] Use regex in parseArgs.
-- [x] Throw an error when option is invalid.
-- [x] Change the `headmain` to throw usage.
-- [x] Change the `message` to usage.
-- [x] Go until options are triggered, consider all the file names after that option.
-- [x] Add tests for `isOption`
-- [x] Check the options are valid.
-- [x] Make parseArgs work when same option is repeated.
-- [x] Go through the args array and find which is options and files.
-- [x] Change the structure of object to `name count filenames`
-- [x] Change the `optionName` to `name`.
-- [x] Add try catch in `main`.
-- [x] Write assert throws when file not found.
-- [x] Write a try catch in `headMain`.
-- [x] Dont work on files at start instead work on content of file.
-- [x] Add main in `head.js`.
-- [x] Make head work for one file.
-- [x] Change the contract of `head` to take variables.
-- [x] Decide the seperator in `headMain`.
-- [x] Create a headMain that deals with files.
-- [x] Make a richer structure while parsing.
-- [x] Change the `extractLines` funtion name.
-- [x] Change the contract of `parseArgs` to return without separator.
-- [x] while parsing `args` decide the separator.
-- [x] Set `number of lines` to 10 , when options are not specified.
-- [x] Make `parseArgs` work for `-c` option.
-- [x] Make `parseArgs` work when one option is given.
-- [x] Create separate file for `parseArgs`.
-- [x] Change the contract of `head` to take separator.
-- [x] Send a separator to `splitLines` and `joinLines`.
-- [x] Move `splitLine` and `joinLines` to new file.
-- [x] Add tests for `splitLine` and `joinLines` .
-- [x] Pass the number of lines to `head` function.
-- [x] Write  `splitLines` and `joinLines` function.
-- [x] Create head function that takes contents and work on it.
-- [x] Create a function which takes lines and number of lines to return.
-- [x] Use slice to get lines.
-- [x] Make an expectation/test.
-- [x] Create  testHeadLib.js, headLib.js.
-- [x] Create a directory structure.
+ - **MUST:**
+    - [ ] Review code after function becomes 4 lines.
+    - [ ] First hardcode the values.
+    - [ ] Dont write code when i dont have clarity.
+
+ - **DONE:**
+    - [x] Set the default of -n to 10.
+    - [x] Extract functions from `parseOptions`.
+    - [x] Write tests for `tailFile`.
+    - [x] Write tests for `tailMain`.
+    - [x] `tailMain` should take `log,error`.
+    - [x] Write `tailMain` function.
+    - [x] Add `main` in tail.js.
+    - [x] Implement multiple files.
+    - [x] Send `parseOptions` to `parseArgs` from `tailMain`.
+    - [x] Write try catch in `tail.js`.
+    - [x] Write `try catch` in tailMain.
+    - [x] Change the contract of `tailMain` to recieve args.
+    - [x] Extract data into seperate file.
+    - [x] Pass `readFile` to `tailMain`.
+    - [x] Change the directory structure.
+    - [x] Send usage when no `options,files` specified.
+    - [x] Write a sample test for tail.
+    - [x] Write function for lines .
+    - [x] Write function for chars.
+
+
+# HEAD:
+
+- **WORKING:**
+
+- **TODO:**
+  - [ ] Refactor `headMain`.
+  - [ ] Test multiple files.
+  - [ ] Write tests for `headFile`.
+  - [ ] Write tests for `validators`.
+  - [ ] Dont format when file length is 1.
+  - [ ] Refactor `parseArgs`.
+
+
+- **MUST:**
+  - [ ] Review code after function becomes 4 lines.
+  - [ ] First hardcode the values.
+  - [ ] Dont write code when i dont have clarity.
+
+
+- **DONE:**
+  - [x] Refactor `validateArgs`.
+  - [x] Change the contract of `headMain` to take `log,error,readFile,args`.
+  - [x] Change the formatter to take content and format it.
+  - [x] Write print in a seperate file.
+  - [x] Store content and `isError` for printing.
+  - [x] Send mocked log and error functions to print.
+  - [x] Use print function to display output and errors.
+  - [x] Handle if `-10` comes.
+  - [x] Throw error if `0` is a value.
+  - [x] Write tests for validateFiles.
+  - [x] validate the files in `validateArgs`
+  - [x] Change the error message in `validateArgs`.
+  - [x] Use forEach in `validateArgs`
+  - [x] validate in `parseArgs` only.
+  - [x] set -n when no option is specified.
+  - [x] validate the object recieving from `parseArgs`
+  - [x] Change the validateArgs function.
+  - [x] Extract validateArgs into a different file.
+  - [x] Extract `parseOption` function from parseArgs.
+  - [x] Change the tests of `parseArgs`
+  - [x] Consider changing the contract of `parseargs` to send all the options and then validate.
+  - [x] Remove isOption function.
+  - [x] test `seperateNameValue` function.
+  - [x] Test `seperateArgs`.
+  - [x] Create the iterator in different file.
+  - [x] Consider the iterator method.
+  - [x] Change the mock function to work on multiple files.
+  - [x] Show usage when no files specified.
+  - [x] change the test cases for head main(send arrays).
+  - [x] Change the `format` in multiple files test case.
+  - [x] connect formatter in headMain.
+  - [x] write a formatter.
+  - [x] format differntly when one one file is given.
+  - [x] write formatter in a differnet file.
+  - [x] use map for multiple files.
+  - [x] Make head accept multiple files.
+  - [x] Throw error if files are not specified.
+  - [x] Send errors to std error.
+  - [x] export `splitlines` and `joinlines`.
+  - [x] Throw error if 2 different options are specified.
+  - [x] Make `parseArgs` work when options are without space.
+  - [x] Use regex in parseArgs.
+  - [x] Throw an error when option is invalid.
+  - [x] Change the `headmain` to throw usage.
+  - [x] Change the `message` to usage.
+  - [x] Go until options are triggered, consider all the file names after that option.
+  - [x] Add tests for `isOption`
+  - [x] Check the options are valid.
+  - [x] Make parseArgs work when same option is repeated.
+  - [x] Go through the args array and find which is options and files.
+  - [x] Change the structure of object to `name count filenames`
+  - [x] Change the `optionName` to `name`.
+  - [x] Add try catch in `main`.
+  - [x] Write assert throws when file not found.
+  - [x] Write a try catch in `headMain`.
+  - [x] Dont work on files at start instead work on content of file.
+  - [x] Add main in `head.js`.
+  - [x] Make head work for one file.
+  - [x] Change the contract of `head` to take variables.
+  - [x] Decide the seperator in `headMain`.
+  - [x] Create a headMain that deals with files.
+  - [x] Make a richer structure while parsing.
+  - [x] Change the `extractLines` funtion name.
+  - [x] Change the contract of `parseArgs` to return without separator.
+  - [x] while parsing `args` decide the separator.
+  - [x] Set `number of lines` to 10 , when options are not specified.
+  - [x] Make `parseArgs` work for `-c` option.
+  - [x] Make `parseArgs` work when one option is given.
+  - [x] Create separate file for `parseArgs`.
+  - [x] Change the contract of `head` to take separator.
+  - [x] Send a separator to `splitLines` and `joinLines`.
+  - [x] Move `splitLine` and `joinLines` to new file.
+  - [x] Add tests for `splitLine` and `joinLines` .
+  - [x] Pass the number of lines to `head` function.
+  - [x] Write  `splitLines` and `joinLines` function.
+  - [x] Create head function that takes contents and work on it.
+  - [x] Create a function which takes lines and number of lines to return.
+  - [x] Use slice to get lines.
+  - [x] Make an expectation/test.
+  - [x] Create  testHeadLib.js, headLib.js.
+  - [x] Create a directory structure.
+
