@@ -1,5 +1,16 @@
 const assert = require('assert');
-const { getLines, getChars } = require('../../src/tail/tailLib.js');
+const { getLines, getChars, tailMain } = require('../../src/tail/tailLib.js');
+
+const mockReadFile = (expFileNames, contents, expEncoding) => {
+  let index = 0;
+  return function (fileName, encoding) {
+    assert.strictEqual(fileName, expFileNames[index]);
+    assert.strictEqual(encoding, expEncoding);
+    const content = contents[index];
+    index++;
+    return content;
+  };
+};
 
 describe('getLines', () => {
   it('Should return last one line', () => {
@@ -42,5 +53,19 @@ describe('getChars', () => {
   it('Should return last 1 character from 3 charcters', () => {
     assert.strictEqual(getChars('hel', 1), 'l');
     assert.strictEqual(getChars('bye', 1), 'e');
+  });
+});
+
+describe('tailMain', () => {
+  it('Should return last 1 line in a file', () => {
+    const mockedReadFile = mockReadFile(['hi.txt'], ['hi'], 'utf-8');
+    const actual = tailMain(mockedReadFile, { name: '-n', count: 1 }, 'hi.txt');
+    assert.strictEqual(actual, 'hi');
+  });
+
+  it('Should return last 1 character in a file', () => {
+    const mockedReadFile = mockReadFile(['hi.txt'], ['h'], 'utf-8');
+    const actual = tailMain(mockedReadFile, { name: '-c', count: 1 }, 'hi.txt');
+    assert.strictEqual(actual, 'h');
   });
 });

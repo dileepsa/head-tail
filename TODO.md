@@ -13,7 +13,11 @@
 **TAIL:**
 
 - [ ] Use differnet parser in tail.
-
+- [ ] Write `tailMain` function.
+- [ ] Pass `readFile` to `tailMain`.
+- [ ] Add `main` in tail.js.
+- [ ] Send `parseOptions` to `parseArgs`.
+- [ ] Send `formatArgs` to `parseArgs`.
 
 **MAYBE*:**
 

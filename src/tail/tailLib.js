@@ -8,5 +8,12 @@ const getChars = (content, count) => {
   return lines.slice(-count).join('');
 };
 
+const tailMain = (readFile, option, fileName) => {
+  const content = readFile(fileName, 'utf-8');
+  const fn = option.name === '-n' ? getLines : getChars;
+  return fn(content, option.count);
+};
+
+exports.tailMain = tailMain;
 exports.getLines = getLines;
 exports.getChars = getChars;
