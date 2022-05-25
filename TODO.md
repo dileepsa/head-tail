@@ -14,7 +14,7 @@
 - [ ] Use differnet parser in tail.
 - [ ] Send `formatArgs` to `parseArgs`.
 - [ ] Implement `formatArgs`.
-
+- [ ] Set the default of -n to 10.
 **MAYBE*:**
 
 **MUST:**

@@ -47,3 +47,5 @@ const parseOptions =
   [lineOption(), byteOption(), reverseOption(), quietOption()];
 
 exports.parseOptions = parseOptions;
+exports.parseCOption = parseCOption;
+exports.parseNOption = parseNOption;
