@@ -49,7 +49,7 @@
 
 - **TODO:**
   - [ ] Refactor `headMain`.
-  - [ ] Test multiple files.
+  - [ ] Use seperate functions for `line` and `byte` counts.
   - [ ] Write tests for `headFile`.
   - [ ] Write tests for `validators`.
   - [ ] Dont format when file length is 1.
@@ -63,6 +63,8 @@
 
 
 - **DONE:**
+  - [x] Extract `headFiles` from `headMain`.
+  - [x] Test multiple files.
   - [x] Refactor `validateArgs`.
   - [x] Change the contract of `headMain` to take `log,error,readFile,args`.
   - [x] Change the formatter to take content and format it.

@@ -3,6 +3,10 @@ const { parseArgs } = require('./parseArgs.js');
 const { format } = require('./format.js');
 const { display } = require('./display.js');
 
+const error = (name, message) => {
+  return { name, message };
+};
+
 const extract = (lines, count) => lines.slice(0, count);
 
 const head = (content, count, separator) => {
@@ -18,33 +22,34 @@ const headFile = (readFile, fileName, option) => {
   let isError = false;
   try {
     content = readFile(fileName, 'utf-8');
-  } catch (error) {
+  } catch (err) {
     isError = true;
     return {
-      fileName, content: {
-        name: 'FileReadError',
-        message: `head: ${fileName}: No such file or directory`,
-      }, isError
+      fileName,
+      content: error('fileReadError',
+        `head: ${fileName}: No such file or directory`),
+      isError
     };
   }
   const separator = selectSeperator(option.name);
   return { fileName, content: head(content, option.value, separator), isError };
 };
 
-const headMain = (readFile, log, error, args) => {
-  const { fileNames, option } = parseArgs(args);
-
-  const contents = fileNames.map((fileName) =>
-    headFile(readFile, fileName, option));
-
-  const formatted = contents.map((record) => {
+const headFiles = (readFile, fileNames, option) => {
+  return fileNames.map((fileName) => {
+    const record = headFile(readFile, fileName, option);
     if (record.isError) {
       return record;
     }
     record.content = format(record.content, record.fileName);
     return record;
   });
-  return display(log, error, formatted);
+};
+
+const headMain = (readFile, log, logError, args) => {
+  const { fileNames, option } = parseArgs(args);
+  const headResults = headFiles(readFile, fileNames, option);
+  return display(log, logError, headResults);
 };
 
 exports.head = head;
