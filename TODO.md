@@ -48,14 +48,12 @@
 - **WORKING:**
 
 - **TODO:**
-  - [ ] Use tryCatch in `tailMain`
+  - [ ] Use tryCatch in `tailMain` to catch error of parseArgs.
   - [ ] Use seperate functions for `line` and `byte` counts.
   - [ ] Write tests for `headFile`.
   - [ ] Write tests for `validators`.
   - [ ] Dont format when file length is 1.
-  - [ ] Refactor `parseArgs`.
-
-
+  - [ ] Change the parseOptions to `parser`.
 - **MUST:**
   - [ ] Review code after function becomes 4 lines.
   - [ ] First hardcode the values.
@@ -63,6 +61,11 @@
 
 
 - **DONE:**
+  - [x] Add mutlitple files test in `headFiles`
+  - [x] Refactor `parseArgs`.
+  - [x] Remove `if` condition in `parseOptions`.
+  - [x] Extract `isOption` from `parseOptions`.
+  - [x] Create `CreateOptionObj` function.
   - [x] Refactor `headMain`.
   - [x] Extract `headFiles` from `headMain`.
   - [x] Test multiple files.

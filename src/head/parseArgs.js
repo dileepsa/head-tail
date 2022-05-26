@@ -1,43 +1,52 @@
 const { createIterator } = require('./createIterator.js');
 const { validateArgs } = require('./validateArgs.js');
 
-const seperateNameValue = (arg) => {
+const getOption = (options) => {
+  options.unshift({ name: '-n', value: 10 });
+  const option = options.pop();
+  return option;
+};
+
+const isStartsWith = (text, symbol) => ('' + text).startsWith(symbol);
+
+const isOption = text => {
+  return (isStartsWith(text, '-') || isStartsWith(text, '+'))
+    && text.length > 1;
+};
+
+const seperateNameValue = arg => {
   return isFinite(arg) ? ['-n', '' + Math.abs(arg)] :
     [arg.slice(0, 2), arg.slice(2)];
 };
 
-const seperateArgs = (args) => {
-  return args.flatMap((arg) =>
-    arg.startsWith('-') ? seperateNameValue(arg) : arg).filter((arg) => arg);
+const seperateArg = arg => isOption(arg) ? seperateNameValue(arg) : arg;
+
+const seperateArgs = args => {
+  return args.flatMap(seperateArg).filter(arg => arg);
 };
 
-const parseOptions = (argsIterator) => {
-  const parsedArgs = { options: [], fileNames: [] };
+const createOptionObj = (name, value) => {
+  return { name, value };
+};
+
+const parseOptions = argsIterator => {
+  const options = [];
   let currentArg = argsIterator.currentArg();
 
-  while (!argsIterator.isEnd()) {
-    if (!currentArg.startsWith('-')) {
-      parsedArgs.fileNames = argsIterator.restOfArgs();
-      return parsedArgs;
-    }
-
-    parsedArgs.options.push(
-      { name: currentArg, value: + argsIterator.nextArg() });
-    argsIterator.nextArg();
-    currentArg = argsIterator.currentArg();
+  while (isOption(currentArg)) {
+    options.push(
+      createOptionObj(currentArg, +argsIterator.nextArg()));
+    currentArg = argsIterator.nextArg();
   }
-  return parsedArgs;
+  const fileNames = argsIterator.restOfArgs();
+  return { fileNames, options };
 };
 
-const parseArgs = (args) => {
+const parseArgs = args => {
   const argsIterator = createIterator(args);
-  const parsedArgs = parseOptions(argsIterator);
-  validateArgs(parsedArgs);
-
-  parsedArgs.options.unshift({ name: '-n', value: 10 });
-
-  const { fileNames, options } = parsedArgs;
-  const option = options.pop();
+  const { fileNames, options } = parseOptions(argsIterator);
+  validateArgs({ fileNames, options });
+  const option = getOption(options);
   return { fileNames, option };
 };
 

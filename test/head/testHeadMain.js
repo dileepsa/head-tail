@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { headMain, headFiles } = require('../../src/head/headLib.js');
+const { headMain, headFiles, createErrorObj } = require('../../src/head/headLib.js');
 const { mockConsole } = require('./testDisplay.js');
 
 const mockReadFile = (expFileNames, contents, expEncoding) => {
@@ -34,21 +34,33 @@ describe('headMain', () => {
 });
 
 describe('headFiles', () => {
-  it('Should return one record when one fileName is given', () => {
-    const mockedReadFile = mockReadFile(['hi.txt'], ['hi'], 'utf-8');
+  it('Should return content record when one fileName is given', () => {
+    const mockedReadFile = mockReadFile(['a.txt'], ['hi'], 'utf-8');
     const option = { name: '-n', value: 1 };
-    const actual = headFiles(mockedReadFile, ['hi.txt'], option);
-    const expected = [{ content: '==> hi.txt <==\nhi\n', fileName: 'hi.txt', isError: false }];
+    const actual = headFiles(mockedReadFile, ['a.txt'], option);
+    const expected = [
+      { content: '==> a.txt <==\nhi\n', fileName: 'a.txt', isError: false }
+    ];
     assert.deepStrictEqual(actual, expected);
   });
 
-  it('Should return one record when fileName not exists', () => {
+  it('Should return content records when multiple fileName are given', () => {
+    const mockedReadFile = mockReadFile(['a.txt', 'b.txt'], ['hi', 'bye'], 'utf-8');
+    const option = { name: '-n', value: 1 };
+    const actual = headFiles(mockedReadFile, ['a.txt', 'b.txt'], option);
+    const expected = [
+      { content: '==> a.txt <==\nhi\n', fileName: 'a.txt', isError: false },
+      { content: '==> b.txt <==\nbye\n', fileName: 'b.txt', isError: false }
+    ];
+    assert.deepStrictEqual(actual, expected);
+  });
+
+  it('Should return error record when fileName not exists', () => {
     const mockedReadFile = mockReadFile(['hi.txt'], ['hi'], 'utf-8');
     const option = { name: '-n', value: 1 };
     const actual = headFiles(mockedReadFile, ['hi.'], option);
     const expected = [{
-      content:
-        { name: 'fileReadError', message: "head: hi.: No such file or directory" },
+      content: createErrorObj('fileReadError', "head: hi.: No such file or directory"),
       fileName: 'hi.', isError: true
     }];
     assert.deepStrictEqual(actual, expected);
