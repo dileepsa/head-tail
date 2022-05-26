@@ -29,7 +29,7 @@ const createOptionObj = (name, value) => {
   return { name, value };
 };
 
-const parseOptions = argsIterator => {
+const parser = argsIterator => {
   const options = [];
   let currentArg = argsIterator.currentArg();
 
@@ -44,7 +44,7 @@ const parseOptions = argsIterator => {
 
 const parseArgs = args => {
   const argsIterator = createIterator(args);
-  const { fileNames, options } = parseOptions(argsIterator);
+  const { fileNames, options } = parser(argsIterator);
   validateArgs({ fileNames, options });
   const option = getOption(options);
   return { fileNames, option };
@@ -53,4 +53,4 @@ const parseArgs = args => {
 exports.parseArgs = parseArgs;
 exports.seperateArgs = seperateArgs;
 exports.seperateNameValue = seperateNameValue;
-exports.parseOptions = parseOptions;
+exports.parser = parser;

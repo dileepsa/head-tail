@@ -18,7 +18,7 @@ const head = (content, count, separator) => {
 
 const selectSeperator = (option) => option === '-c' ? '' : '\n';
 
-const headFile = (readFile, fileName, option, separator) => {
+const headOfFile = (readFile, fileName, option, separator) => {
   const result = {};
   result.fileName = fileName;
   result.isError = false;
@@ -38,7 +38,7 @@ const headFiles = (readFile, fileNames, option) => {
   const seperator = selectSeperator(option.name);
 
   return fileNames.map((fileName) => {
-    const record = headFile(readFile, fileName, option, seperator);
+    const record = headOfFile(readFile, fileName, option, seperator);
     if (record.isError) {
       return record;
     }
@@ -58,4 +58,5 @@ exports.head = head;
 exports.extract = extract;
 exports.headMain = headMain;
 exports.headFiles = headFiles;
+exports.headOfFile = headOfFile;
 exports.createErrorObj = createErrorObj;

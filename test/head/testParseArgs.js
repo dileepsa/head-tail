@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { parseArgs, parseOptions, seperateArgs, seperateNameValue } = require('../../src/head/parseArgs.js');
+const { parseArgs, parser, seperateArgs, seperateNameValue } = require('../../src/head/parseArgs.js');
 const { createIterator } = require('../../src/head/createIterator.js');
 
 describe('parseArgs', () => {
@@ -70,21 +70,21 @@ describe('seperateNameValue', () => {
 describe('parseOptions', () => {
   it('Should parse when one option is given', () => {
     const argsIterator = createIterator(['-n', '10']);
-    const actual = parseOptions(argsIterator);
+    const actual = parser(argsIterator);
     const expected = { options: [{ name: '-n', value: 10 }], fileNames: [] };
     assert.deepStrictEqual(actual, expected);
   });
 
   it('Should parse when option and filename is given', () => {
     const argsIterator = createIterator(['-n', '10', 'hi']);
-    const actual = parseOptions(argsIterator);
+    const actual = parser(argsIterator);
     const expected = { options: [{ name: '-n', value: 10 }], fileNames: ['hi'] };
     assert.deepStrictEqual(actual, expected);
   });
 
   it('Should parse when multiple options are given', () => {
     const argsIterator = createIterator(['-c', '2', '-c', '5', 'hi']);
-    const actual = parseOptions(argsIterator);
+    const actual = parser(argsIterator);
     const expected = {
       options: [{ name: '-c', value: 2 }, { name: '-c', value: 5 }], fileNames: ['hi']
     };
@@ -93,7 +93,7 @@ describe('parseOptions', () => {
 
   it('Should parse when multiple files are given', () => {
     const argsIterator = createIterator(['-c', '5', 'hi', 'bye']);
-    const actual = parseOptions(argsIterator);
+    const actual = parser(argsIterator);
     const expected = { options: [{ name: '-c', value: 5 }], fileNames: ['hi', 'bye'] };
     assert.deepStrictEqual(actual, expected);
   });

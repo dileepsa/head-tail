@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { headMain, headFiles, createErrorObj } = require('../../src/head/headLib.js');
+const { headMain, headFiles, headOfFile, createErrorObj } = require('../../src/head/headLib.js');
 const { mockConsole } = require('./testDisplay.js');
 
 const mockReadFile = (expFileNames, contents, expEncoding) => {
@@ -33,17 +33,29 @@ describe('headMain', () => {
   });
 });
 
-describe('headFiles', () => {
-  it('Should return content record when one fileName is given', () => {
+describe('headOfFile', () => {
+  it('Should return content record', () => {
     const mockedReadFile = mockReadFile(['a.txt'], ['hi'], 'utf-8');
     const option = { name: '-n', value: 1 };
-    const actual = headFiles(mockedReadFile, ['a.txt'], option);
-    const expected = [
-      { content: '==> a.txt <==\nhi\n', fileName: 'a.txt', isError: false }
-    ];
+    const actual = headOfFile(mockedReadFile, 'a.txt', option, '\n');
+    const expected =
+      { content: 'hi', fileName: 'a.txt', isError: false };
     assert.deepStrictEqual(actual, expected);
   });
 
+  it('Should return error record when fileName not exists', () => {
+    const mockedReadFile = mockReadFile(['hi.txt'], ['hi'], 'utf-8');
+    const option = { name: '-n', value: 1 };
+    const actual = headOfFile(mockedReadFile, 'hi.', option, '\n');
+    const expected = {
+      content: createErrorObj('fileReadError', "head: hi.: No such file or directory"),
+      fileName: 'hi.', isError: true
+    };
+    assert.deepStrictEqual(actual, expected);
+  });
+});
+
+describe('headFiles', () => {
   it('Should return content records when multiple fileName are given', () => {
     const mockedReadFile = mockReadFile(['a.txt', 'b.txt'], ['hi', 'bye'], 'utf-8');
     const option = { name: '-n', value: 1 };
@@ -65,4 +77,19 @@ describe('headFiles', () => {
     }];
     assert.deepStrictEqual(actual, expected);
   });
+
+  it('Should return content and error record when only one file exists', () => {
+    const mockedReadFile = mockReadFile(['a.txt', 'b.txt'], ['hi', 'bye'], 'utf-8');
+    const option = { name: '-n', value: 1 };
+    const actual = headFiles(mockedReadFile, ['a.txt', 'bye.txt'], option);
+    const expected = [
+      { content: '==> a.txt <==\nhi\n', fileName: 'a.txt', isError: false },
+      {
+        content: createErrorObj('fileReadError', "head: bye.txt: No such file or directory"),
+        fileName: 'bye.txt', isError: true
+      }
+    ];
+    assert.deepStrictEqual(actual, expected);
+  });
 });
+

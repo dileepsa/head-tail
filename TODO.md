@@ -53,7 +53,6 @@
   - [ ] Write tests for `headFile`.
   - [ ] Write tests for `validators`.
   - [ ] Dont format when file length is 1.
-  - [ ] Change the parseOptions to `parser`.
 - **MUST:**
   - [ ] Review code after function becomes 4 lines.
   - [ ] First hardcode the values.
@@ -61,6 +60,7 @@
 
 
 - **DONE:**
+  - [x] Change the parseOptions to `parser`.
   - [x] Add mutlitple files test in `headFiles`
   - [x] Refactor `parseArgs`.
   - [x] Remove `if` condition in `parseOptions`.
