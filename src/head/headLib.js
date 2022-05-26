@@ -47,11 +47,15 @@ const headFiles = (readFile, fileNames, option) => {
   });
 };
 
+const getExitCode = headResults => + headResults.some(
+  ({ isError }) => +isError);
+
 const headMain = (readFile, log, error, cmdArgs) => {
   const args = seperateArgs(cmdArgs);
   const { fileNames, option } = parseArgs(args);
   const headResults = headFiles(readFile, fileNames, option);
-  return display(log, error, headResults);
+  display(log, error, headResults);
+  return getExitCode(headResults);
 };
 
 exports.head = head;
@@ -60,3 +64,4 @@ exports.headMain = headMain;
 exports.headFiles = headFiles;
 exports.headOfFile = headOfFile;
 exports.createErrorObj = createErrorObj;
+exports.getExitCode = getExitCode;

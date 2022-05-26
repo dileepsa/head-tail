@@ -1,5 +1,6 @@
 const assert = require('assert');
-const { headMain, headFiles, headOfFile, createErrorObj } = require('../../src/head/headLib.js');
+const lib = require('../../src/head/headLib.js');
+const { headMain, headFiles, headOfFile, createErrorObj, getExitCode } = lib;
 const { mockConsole } = require('./testDisplay.js');
 
 const mockReadFile = (expFileNames, contents, expEncoding) => {
@@ -93,3 +94,14 @@ describe('headFiles', () => {
   });
 });
 
+describe('getExitCode', () => {
+  it('Should return 1 when isError is set to true', () => {
+    const actual = getExitCode([{ isError: true, content: 'bye' }]);
+    assert.strictEqual(actual, 1);
+  });
+
+  it('Should return 0 when isError is set to false', () => {
+    const actual = getExitCode([{ isError: false, content: 'hi' }]);
+    assert.strictEqual(actual, 0);
+  });
+});

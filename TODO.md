@@ -48,9 +48,10 @@
 - **WORKING:**
 
 - **TODO:**
+  - [ ] Extract a function from `display`.
+  - [ ] Remove the exit codes from display.
   - [ ] Use tryCatch in `tailMain` to catch error of parseArgs.
   - [ ] Use seperate functions for `line` and `byte` counts.
-  - [ ] Write tests for `headFile`.
   - [ ] Write tests for `validators`.
   - [ ] Dont format when file length is 1.
 - **MUST:**
@@ -60,6 +61,8 @@
 
 
 - **DONE:**
+  - [x] Use the exit code in `main`.
+  - [x] Write tests for `headFile`.
   - [x] Change the parseOptions to `parser`.
   - [x] Add mutlitple files test in `headFiles`
   - [x] Refactor `parseArgs`.

@@ -1,5 +1,3 @@
-// [{ content: '==> ./bye.txt <==\nbye\n', isError: false }];
-
 const display = (log, error, contents) => {
   let exitCode = 0;
   contents.forEach((record) => {
