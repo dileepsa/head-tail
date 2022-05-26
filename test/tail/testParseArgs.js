@@ -23,26 +23,6 @@ describe('parseArgs', () => {
     assert.deepStrictEqual(actual, expected);
   });
 
-  it('Should return obj when -c2 is given', () => {
-    const args = ['-c2', 'file'];
-    const parseOptions = [
-      { flag: '-c', valueNeeded: true, headersRequired: true, parse: parseCOption, validate: () => { } }
-    ];
-    const actual = parseArgs(parseOptions, args);
-    const expected = { fileNames: ['file'], options: { name: '-c', value: 2 } };
-    assert.deepStrictEqual(actual, expected);
-  });
-
-  it('Should return obj when -n2 is given', () => {
-    const args = ['-n2', 'file'];
-    const parseOptions = [
-      { flag: '-n', valueNeeded: true, headersRequired: true, parse: parseNOption, validate: () => { } }
-    ];
-    const actual = parseArgs(parseOptions, args);
-    const expected = { fileNames: ['file'], options: { name: '-n', value: 2 } };
-    assert.deepStrictEqual(actual, expected);
-  });
-
   it('Should return default when no options are given', () => {
     const args = ['file'];
     const parseOptions = [

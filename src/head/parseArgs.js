@@ -30,8 +30,7 @@ const parseOptions = (argsIterator) => {
 };
 
 const parseArgs = (args) => {
-  const modifiedArgs = seperateArgs(args);
-  const argsIterator = createIterator(modifiedArgs);
+  const argsIterator = createIterator(args);
   const parsedArgs = parseOptions(argsIterator);
   validateArgs(parsedArgs);
 

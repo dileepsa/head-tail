@@ -2,6 +2,7 @@ const { parseArgs } = require("./parseArgs");
 const { parseOptions } = require('./tailOptions.js');
 const { format } = require('./format.js');
 const { display } = require('../head/display.js');
+const { seperateArgs } = require("../head/parseArgs.js");
 
 const getLines = (content, count) => {
   const lines = content.split('\n');
@@ -32,7 +33,8 @@ const tailFile = (readFile, fileName, fnToCall, option) => {
   return { fileName, content: fnToCall(content, option.value), isError };
 };
 
-const tailMain = (readFile, log, error, args) => {
+const tailMain = (readFile, log, error, commandLineArgs) => {
+  const args = seperateArgs(commandLineArgs);
   const { fileNames, options } = parseArgs(parseOptions, args);
   const fn = options.name === '-n' ? getLines : getChars;
   const contents = fileNames.map((fileName) => {

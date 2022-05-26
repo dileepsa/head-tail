@@ -2,12 +2,10 @@
 
  - **WORKING:**
 
-    - [ ] Extract `getOption` function from `parseArgs`.
 
  - **TODO:**
 
     - [ ] Use differnet parser in tail.
-    - [ ] Send `formatArgs` to `parseArgs`.
     - [ ] Implement `formatArgs`.
     - [ ] write function for to get reversed content for `-r`.
     - [ ] Dont format when the headersRequired set to `false`.
@@ -22,6 +20,8 @@
     - [ ] Dont write code when i dont have clarity.
 
  - **DONE:**
+    - [x] Extract `getOption` function from `parseArgs`.
+    - [x] Send `formattedArgs` to `parseArgs`.
     - [x] Set the default of -n to 10.
     - [x] Extract functions from `parseOptions`.
     - [x] Write tests for `tailFile`.
@@ -48,7 +48,6 @@
 - **WORKING:**
 
 - **TODO:**
-  - [ ] Refactor `headMain`.
   - [ ] Use seperate functions for `line` and `byte` counts.
   - [ ] Write tests for `headFile`.
   - [ ] Write tests for `validators`.
@@ -63,6 +62,7 @@
 
 
 - **DONE:**
+  - [x] Refactor `headMain`.
   - [x] Extract `headFiles` from `headMain`.
   - [x] Test multiple files.
   - [x] Refactor `validateArgs`.

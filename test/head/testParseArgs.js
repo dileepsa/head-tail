@@ -26,12 +26,6 @@ describe('parseArgs', () => {
     expected = { option: { name: '-n', value: 10 }, fileNames: ['wish.txt', 'hi.txt'] };
     assert.deepStrictEqual(actual, expected);
   });
-
-  it('Should work when option and value are combined', () => {
-    const actual = parseArgs(['-c10', 'wish.txt']);
-    const expected = { option: { name: '-c', value: 10 }, fileNames: ['wish.txt'] };
-    assert.deepStrictEqual(actual, expected);
-  });
 });
 
 describe('seperateArgs', () => {

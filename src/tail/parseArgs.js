@@ -1,4 +1,3 @@
-/* eslint-disable no-loop-func */
 /* eslint-disable max-statements */
 
 const isOption = (text) => {
@@ -9,30 +8,27 @@ const mergeOptions = function (option1, option2) {
   return { ...option1, ...option2 };
 };
 
-const seperateNameValue = (arg) => {
-  return isFinite(arg) ? ['-n', '' + Math.abs(arg)] :
-    [arg.slice(0, 2), arg.slice(2)];
+const getOption = (options, arg) => {
+  return options.find(({ flag }) => flag === arg);
 };
 
-const seperateArgs = (args) => {
-  return args.flatMap((arg) =>
-    arg.startsWith('-') ? seperateNameValue(arg) : arg).filter((arg) => arg);
+const assertInvalidOption = (option) => {
+  if (!option) {
+    throw `invalid option -- ${option}`;
+  }
 };
 
 const parseArgs = (parseOptions, args) => {
-  const allOptions = seperateArgs(args);
   let options = { name: '-n', value: 10 };
   const prevOptions = [];
   let index = 0;
-  while (isOption(allOptions[index])) {
-    const option = parseOptions.find(({ flag }) => flag === allOptions[index]);
-    if (!option) {
-      throw `invalid option -- ${allOptions[index]}`;
-    }
+  while (isOption(args[index])) {
+    const option = getOption(parseOptions, args[index]);
+    assertInvalidOption(option);
     const flag = option.flag;
     let value = null;
     if (option.valueNeeded) {
-      value = +allOptions[index + 1];
+      value = +args[index + 1];
       index++;
     }
     option.validate(prevOptions);
@@ -40,7 +36,7 @@ const parseArgs = (parseOptions, args) => {
     prevOptions.push(flag);
     index++;
   }
-  const fileNames = allOptions.slice(index);
+  const fileNames = args.slice(index);
   return { options, fileNames };
 };
 

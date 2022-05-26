@@ -1,5 +1,5 @@
 const { splitLines, joinLines } = require('./stringUtils.js');
-const { parseArgs } = require('./parseArgs.js');
+const { parseArgs, seperateArgs } = require('./parseArgs.js');
 const { display } = require('./display.js');
 
 const error = (name, message) => {
@@ -46,7 +46,8 @@ const headFiles = (readFile, fileNames, option) => {
   });
 };
 
-const headMain = (readFile, log, logError, args) => {
+const headMain = (readFile, log, logError, commandLineArgs) => {
+  const args = seperateArgs(commandLineArgs);
   const { fileNames, option } = parseArgs(args);
   const headResults = headFiles(readFile, fileNames, option);
   return display(log, logError, headResults);
