@@ -4,6 +4,10 @@ const { format } = require('./format.js');
 const { display } = require('../head/display.js');
 const { seperateArgs } = require("../head/parseArgs.js");
 
+const error = (name, message) => {
+  return { name, message };
+};
+
 const getLines = (content, count) => {
   const lines = content.split('\n');
   return lines.slice(-count).join('\n');
@@ -15,40 +19,39 @@ const getChars = (content, count) => {
 };
 
 const tailFile = (readFile, fileName, fnToCall, option) => {
-  let content;
-  let isError = false;
+  const result = {};
+  result.fileName = fileName;
+  result.isError = false;
   try {
-    content = readFile(fileName, 'utf-8');
-  } catch (error) {
-    isError = true;
-    return {
-      fileName,
-      content: {
-        name: 'fileReadError',
-        message: `tail: ${fileName}: No such file or directory`
-      },
-      isError
-    };
+    result.content = readFile(fileName, 'utf-8');
+  } catch (err) {
+    result.isError = true;
+    result.content = error('fileReadError',
+      `tail: ${fileName}: No such file or directory`);
+    return result;
   }
-  return { fileName, content: fnToCall(content, option.value), isError };
+  result.content = fnToCall(result.content, option.value);
+  return result;
+};
+
+const tailFiles = (readFile, fileNames, options) => {
+  const fn = options.name === '-n' ? getLines : getChars;
+
+  return fileNames.map((fileName) => {
+    const record = tailFile(readFile, fileName, fn, options);
+    if (record.isError) {
+      return record;
+    }
+    record.content = format(record.content, fileName);
+    return record;
+  });
 };
 
 const tailMain = (readFile, log, error, commandLineArgs) => {
   const args = seperateArgs(commandLineArgs);
   const { fileNames, options } = parseArgs(parseOptions, args);
-  const fn = options.name === '-n' ? getLines : getChars;
-  const contents = fileNames.map((fileName) => {
-    return tailFile(readFile, fileName, fn, options);
-  });
-
-  const formatted = contents.map((record) => {
-    if (record.isError) {
-      return record;
-    }
-    record.content = format(record.content, record.fileName);
-    return record;
-  });
-  return display(log, error, formatted);
+  const tailResults = tailFiles(readFile, fileNames, options);
+  return display(log, error, tailResults);
 };
 
 exports.tailMain = tailMain;

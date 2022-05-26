@@ -36,6 +36,7 @@ const headFile = (readFile, fileName, option, separator) => {
 
 const headFiles = (readFile, fileNames, option) => {
   const seperator = selectSeperator(option.name);
+
   return fileNames.map((fileName) => {
     const record = headFile(readFile, fileName, option, seperator);
     if (record.isError) {

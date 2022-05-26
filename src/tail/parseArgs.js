@@ -12,9 +12,9 @@ const getOption = (options, arg) => {
   return options.find(({ flag }) => flag === arg);
 };
 
-const assertInvalidOption = (option) => {
+const assertInvalidOption = (option, arg) => {
   if (!option) {
-    throw `invalid option -- ${option}`;
+    throw `invalid option -- ${arg}`;
   }
 };
 
@@ -24,7 +24,7 @@ const parseArgs = (parseOptions, args) => {
   let index = 0;
   while (isOption(args[index])) {
     const option = getOption(parseOptions, args[index]);
-    assertInvalidOption(option);
+    assertInvalidOption(option, args[index]);
     const flag = option.flag;
     let value = null;
     if (option.valueNeeded) {

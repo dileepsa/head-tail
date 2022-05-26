@@ -1,10 +1,10 @@
 # TAIL
 
  - **WORKING:**
-
+  - [ ] Refactor `tailMain`.
 
  - **TODO:**
-
+    - [ ] Use tryCatch in `tailMain`
     - [ ] Use differnet parser in tail.
     - [ ] Implement `formatArgs`.
     - [ ] write function for to get reversed content for `-r`.
@@ -48,6 +48,7 @@
 - **WORKING:**
 
 - **TODO:**
+  - [ ] Use tryCatch in `tailMain`
   - [ ] Use seperate functions for `line` and `byte` counts.
   - [ ] Write tests for `headFile`.
   - [ ] Write tests for `validators`.
