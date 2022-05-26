@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { headMain } = require('../../src/head/headLib.js');
+const { headMain, headFiles } = require('../../src/head/headLib.js');
 const { mockConsole } = require('./testDisplay.js');
 
 const mockReadFile = (expFileNames, contents, expEncoding) => {
@@ -30,5 +30,27 @@ describe('headMain', () => {
     const args = ['hi'];
     const actual = headMain(mockedReadFile, mockedLog, mockedError, args);
     assert.strictEqual(actual, 1);
+  });
+});
+
+describe('headFiles', () => {
+  it('Should return one record when one fileName is given', () => {
+    const mockedReadFile = mockReadFile(['hi.txt'], ['hi'], 'utf-8');
+    const option = { name: '-n', value: 1 };
+    const actual = headFiles(mockedReadFile, ['hi.txt'], option);
+    const expected = [{ content: '==> hi.txt <==\nhi\n', fileName: 'hi.txt', isError: false }];
+    assert.deepStrictEqual(actual, expected);
+  });
+
+  it('Should return one record when fileName not exists', () => {
+    const mockedReadFile = mockReadFile(['hi.txt'], ['hi'], 'utf-8');
+    const option = { name: '-n', value: 1 };
+    const actual = headFiles(mockedReadFile, ['hi.'], option);
+    const expected = [{
+      content:
+        { name: 'fileReadError', message: "head: hi.: No such file or directory" },
+      fileName: 'hi.', isError: true
+    }];
+    assert.deepStrictEqual(actual, expected);
   });
 });

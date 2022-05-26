@@ -57,3 +57,4 @@ const headMain = (readFile, log, logError, commandLineArgs) => {
 exports.head = head;
 exports.extract = extract;
 exports.headMain = headMain;
+exports.headFiles = headFiles;
