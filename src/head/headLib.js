@@ -1,11 +1,12 @@
 const { splitLines, joinLines } = require('./stringUtils.js');
 const { parseArgs } = require('./parseArgs.js');
-const { format } = require('./format.js');
 const { display } = require('./display.js');
 
 const error = (name, message) => {
   return { name, message };
 };
+
+const format = (content, fileName) => `==> ${fileName} <==\n${content}\n`;
 
 const extract = (lines, count) => lines.slice(0, count);
 
@@ -17,27 +18,26 @@ const head = (content, count, separator) => {
 
 const selectSeperator = (option) => option === '-c' ? '' : '\n';
 
-const headFile = (readFile, fileName, option) => {
-  let content;
-  let isError = false;
+const headFile = (readFile, fileName, option, separator) => {
+  const result = {};
+  result.fileName = fileName;
+  result.isError = false;
   try {
-    content = readFile(fileName, 'utf-8');
+    result.content = readFile(fileName, 'utf-8');
   } catch (err) {
-    isError = true;
-    return {
-      fileName,
-      content: error('fileReadError',
-        `head: ${fileName}: No such file or directory`),
-      isError
-    };
+    result.isError = true;
+    result.content = error('fileReadError',
+      `head: ${fileName}: No such file or directory`);
+    return result;
   }
-  const separator = selectSeperator(option.name);
-  return { fileName, content: head(content, option.value, separator), isError };
+  result.content = head(result.content, option.value, separator);
+  return result;
 };
 
 const headFiles = (readFile, fileNames, option) => {
+  const seperator = selectSeperator(option.name);
   return fileNames.map((fileName) => {
-    const record = headFile(readFile, fileName, option);
+    const record = headFile(readFile, fileName, option, seperator);
     if (record.isError) {
       return record;
     }
