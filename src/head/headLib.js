@@ -48,7 +48,7 @@ const headFiles = (readFile, fileNames, option) => {
 };
 
 const getExitCode = headResults => + headResults.some(
-  ({ isError }) => +isError);
+  ({ isError }) => isError);
 
 const headMain = (readFile, log, error, cmdArgs) => {
   const args = seperateArgs(cmdArgs);

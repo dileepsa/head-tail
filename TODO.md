@@ -48,9 +48,10 @@
 - **WORKING:**
 
 - **TODO:**
+  - [ ] Change the data strcuture in `headOfFile`.
+  - [ ] Extract `readFile` from `headOfFile`.
   - [ ] Extract a function from `display`.
-  - [ ] Remove the exit codes from display.
-  - [ ] Use tryCatch in `tailMain` to catch error of parseArgs.
+  - [ ] Use tryCatch in `headMain` to catch error of parseArgs.
   - [ ] Use seperate functions for `line` and `byte` counts.
   - [ ] Write tests for `validators`.
   - [ ] Dont format when file length is 1.
@@ -61,6 +62,7 @@
 
 
 - **DONE:**
+  - [x] Remove the exit codes from display.
   - [x] Use the exit code in `main`.
   - [x] Write tests for `headFile`.
   - [x] Change the parseOptions to `parser`.

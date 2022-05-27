@@ -62,8 +62,8 @@ describe('tailMain', () => {
     const mockedLog = mockConsole(['==> hi.txt <==\nhi\n']);
     const mockedError = mockConsole(['bye']);
     const args = ['-n', '1', 'hi.txt'];
-    const actual = tailMain(mockedReadFile, mockedLog, mockedError, args);
-    assert.strictEqual(actual, 0);
+    tailMain(mockedReadFile, mockedLog, mockedError, args);
+    assert.strictEqual(mockedLog.count, 1);
   });
 
   it('Should return last 1 character in a file', () => {
@@ -71,8 +71,8 @@ describe('tailMain', () => {
     const mockedLog = mockConsole(['']);
     const mockedError = mockConsole(['tail: hi: No such file or directory']);
     const args = ['-c', '1', 'hi'];
-    const actual = tailMain(mockedReadFile, mockedLog, mockedError, args);
-    assert.strictEqual(actual, 1);
+    tailMain(mockedReadFile, mockedLog, mockedError, args);
+    assert.strictEqual(mockedError.count, 1);
   });
 });
 
