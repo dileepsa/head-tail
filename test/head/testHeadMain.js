@@ -17,7 +17,7 @@ const mockReadFile = (expFileNames, contents, expEncoding) => {
 describe('headMain', () => {
   it('Should return 0 when there are no errors', () => {
     const mockedReadFile = mockReadFile(['hi.txt'], ['hi'], 'utf-8');
-    const mockedLog = mockConsole(['==> hi.txt <==\nhi\n']);
+    const mockedLog = mockConsole(['hi']);
     const mockedError = mockConsole(['bye']);
     const args = ['hi.txt'];
     const actual = headMain(mockedReadFile, mockedLog, mockedError, args);
@@ -57,6 +57,15 @@ describe('headOfFile', () => {
 });
 
 describe('headFiles', () => {
+  it('Should return content without format when one file is given', () => {
+    const mockedReadFile = mockReadFile(['a.txt'], ['hi'], 'utf-8');
+    const option = { name: '-n', value: 1 };
+    const actual = headFiles(mockedReadFile, ['a.txt'], option);
+    const expected = [
+      { content: 'hi', fileName: 'a.txt', isError: false }]
+      ;
+    assert.deepStrictEqual(actual, expected);
+  });
   it('Should return content records when multiple fileName are given', () => {
     const mockedReadFile = mockReadFile(['a.txt', 'b.txt'], ['hi', 'bye'], 'utf-8');
     const option = { name: '-n', value: 1 };

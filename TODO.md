@@ -54,7 +54,6 @@
   - [ ] Use tryCatch in `headMain` to catch error of parseArgs.
   - [ ] Use seperate functions for `line` and `byte` counts.
   - [ ] Write tests for `validators`.
-  - [ ] Dont format when file length is 1.
 - **MUST:**
   - [ ] Review code after function becomes 4 lines.
   - [ ] First hardcode the values.
@@ -62,6 +61,7 @@
 
 
 - **DONE:**
+  - [x] Dont format when file length is 1.
   - [x] Remove the exit codes from display.
   - [x] Use the exit code in `main`.
   - [x] Write tests for `headFile`.

@@ -6,7 +6,7 @@ const createErrorObj = (name, message) => {
   return { name, message };
 };
 
-const format = (content, fileName) => `==> ${fileName} <==\n${content}\n`;
+const format = ({ content, fileName }) => `==> ${fileName} <==\n${content}\n`;
 
 const extract = (lines, count) => lines.slice(0, count);
 
@@ -34,15 +34,19 @@ const headOfFile = (readFile, fileName, option, separator) => {
   return result;
 };
 
+const identity = ({ content }) => content;
+
+const decideFormatter = fileNames => fileNames.length < 2 ? identity : format;
+
 const headFiles = (readFile, fileNames, option) => {
   const seperator = selectSeperator(option.name);
-
+  const formatter = decideFormatter(fileNames);
   return fileNames.map((fileName) => {
     const record = headOfFile(readFile, fileName, option, seperator);
     if (record.isError) {
       return record;
     }
-    record.content = format(record.content, record.fileName);
+    record.content = formatter(record, record.fileName);
     return record;
   });
 };
