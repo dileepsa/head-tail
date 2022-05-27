@@ -1,7 +1,7 @@
 const display = (log, error, contents) => {
   contents.forEach((record) => {
-    if (record.isError) {
-      error(record.content.message);
+    if (record.error) {
+      error(record.error.message);
       return;
     }
     log(record.content);

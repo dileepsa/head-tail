@@ -4,7 +4,7 @@ const { format } = require('./format.js');
 const { display } = require('../head/display.js');
 const { seperateArgs } = require("../head/parseArgs.js");
 
-const error = (name, message) => {
+const createErrorObj = (name, message) => {
   return { name, message };
 };
 
@@ -19,19 +19,16 @@ const getChars = (content, count) => {
 };
 
 const tailFile = (readFile, fileName, fnToCall, option) => {
-  const result = {};
-  result.fileName = fileName;
-  result.isError = false;
+  let fileContent;
   try {
-    result.content = readFile(fileName, 'utf-8');
+    fileContent = readFile(fileName, 'utf-8');
   } catch (err) {
-    result.isError = true;
-    result.content = error('fileReadError',
+    const error = createErrorObj('fileReadError',
       `tail: ${fileName}: No such file or directory`);
-    return result;
+    return { error, fileName };
   }
-  result.content = fnToCall(result.content, option.value);
-  return result;
+  const content = fnToCall(fileContent, option.value);
+  return { content, fileName };
 };
 
 const tailFiles = (readFile, fileNames, options) => {
@@ -39,7 +36,7 @@ const tailFiles = (readFile, fileNames, options) => {
 
   return fileNames.map((fileName) => {
     const record = tailFile(readFile, fileName, fn, options);
-    if (record.isError) {
+    if (record.error) {
       return record;
     }
     record.content = format(record.content, fileName);

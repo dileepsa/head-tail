@@ -48,7 +48,8 @@
 - **WORKING:**
 
 - **TODO:**
-  - [ ] Change the data strcuture in `headOfFile`.
+  - [ ] Dont format in `headFiles`.
+  - [ ] Catch the error in `headOfFiles` and then decide the message.
   - [ ] Extract `readFile` from `headOfFile`.
   - [ ] Extract a function from `display`.
   - [ ] Use tryCatch in `headMain` to catch error of parseArgs.
@@ -61,6 +62,8 @@
 
 
 - **DONE:**
+  - [x] Change the data strcuture in `headOfFile`.
+  - [x] Extract `hasError` function from `getExitCode`.
   - [x] Dont format when file length is 1.
   - [x] Remove the exit codes from display.
   - [x] Use the exit code in `main`.

@@ -40,7 +40,7 @@ describe('headOfFile', () => {
     const option = { name: '-n', value: 1 };
     const actual = headOfFile(mockedReadFile, 'a.txt', option, '\n');
     const expected =
-      { content: 'hi', fileName: 'a.txt', isError: false };
+      { content: 'hi', fileName: 'a.txt' };
     assert.deepStrictEqual(actual, expected);
   });
 
@@ -49,8 +49,8 @@ describe('headOfFile', () => {
     const option = { name: '-n', value: 1 };
     const actual = headOfFile(mockedReadFile, 'hi.', option, '\n');
     const expected = {
-      content: createErrorObj('fileReadError', "head: hi.: No such file or directory"),
-      fileName: 'hi.', isError: true
+      error: createErrorObj('fileReadError', "head: hi.: No such file or directory"),
+      fileName: 'hi.'
     };
     assert.deepStrictEqual(actual, expected);
   });
@@ -62,7 +62,7 @@ describe('headFiles', () => {
     const option = { name: '-n', value: 1 };
     const actual = headFiles(mockedReadFile, ['a.txt'], option);
     const expected = [
-      { content: 'hi', fileName: 'a.txt', isError: false }]
+      { content: 'hi', fileName: 'a.txt' }]
       ;
     assert.deepStrictEqual(actual, expected);
   });
@@ -71,8 +71,8 @@ describe('headFiles', () => {
     const option = { name: '-n', value: 1 };
     const actual = headFiles(mockedReadFile, ['a.txt', 'b.txt'], option);
     const expected = [
-      { content: '==> a.txt <==\nhi\n', fileName: 'a.txt', isError: false },
-      { content: '==> b.txt <==\nbye\n', fileName: 'b.txt', isError: false }
+      { content: '==> a.txt <==\nhi\n', fileName: 'a.txt' },
+      { content: '==> b.txt <==\nbye\n', fileName: 'b.txt' }
     ];
     assert.deepStrictEqual(actual, expected);
   });
@@ -82,8 +82,8 @@ describe('headFiles', () => {
     const option = { name: '-n', value: 1 };
     const actual = headFiles(mockedReadFile, ['hi.'], option);
     const expected = [{
-      content: createErrorObj('fileReadError', "head: hi.: No such file or directory"),
-      fileName: 'hi.', isError: true
+      error: createErrorObj('fileReadError', "head: hi.: No such file or directory"),
+      fileName: 'hi.'
     }];
     assert.deepStrictEqual(actual, expected);
   });
@@ -93,10 +93,10 @@ describe('headFiles', () => {
     const option = { name: '-n', value: 1 };
     const actual = headFiles(mockedReadFile, ['a.txt', 'bye.txt'], option);
     const expected = [
-      { content: '==> a.txt <==\nhi\n', fileName: 'a.txt', isError: false },
+      { content: '==> a.txt <==\nhi\n', fileName: 'a.txt' },
       {
-        content: createErrorObj('fileReadError', "head: bye.txt: No such file or directory"),
-        fileName: 'bye.txt', isError: true
+        error: createErrorObj('fileReadError', "head: bye.txt: No such file or directory"),
+        fileName: 'bye.txt'
       }
     ];
     assert.deepStrictEqual(actual, expected);
@@ -104,13 +104,13 @@ describe('headFiles', () => {
 });
 
 describe('getExitCode', () => {
-  it('Should return 1 when isError is set to true', () => {
-    const actual = getExitCode([{ isError: true, content: 'bye' }]);
+  it('Should return 1 when the object is error', () => {
+    const actual = getExitCode([{ error: 'bye' }]);
     assert.strictEqual(actual, 1);
   });
 
-  it('Should return 0 when isError is set to false', () => {
-    const actual = getExitCode([{ isError: false, content: 'hi' }]);
+  it('Should return 0 when the object is content', () => {
+    const actual = getExitCode([{ content: 'hi' }]);
     assert.strictEqual(actual, 0);
   });
 });

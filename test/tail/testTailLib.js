@@ -82,7 +82,7 @@ describe('tailFile', () => {
     const fn = (x) => x;
     const option = { name: '-n', value: 1 };
     const actual = tailFile(mockedReadFile, 'hi.txt', fn, option);
-    const expected = { fileName: 'hi.txt', content: 'hi', isError: false };
+    const expected = { fileName: 'hi.txt', content: 'hi' };
     assert.deepStrictEqual(actual, expected);
   });
 
@@ -92,10 +92,10 @@ describe('tailFile', () => {
     const option = { name: '-n', value: 1 };
     const actual = tailFile(mockedReadFile, 'hi.txt', fn, option);
     const expected = {
-      fileName: 'hi.txt', content: {
+      fileName: 'hi.txt', error: {
         name: 'fileReadError',
         message: "tail: hi.txt: No such file or directory",
-      }, isError: true
+      }
     };
     assert.deepStrictEqual(actual, expected);
   });
@@ -106,10 +106,10 @@ describe('tailFile', () => {
     const option = { name: '-n', value: 1 };
     const actual = tailFile(mockedReadFile, 'bye.txt', fn, option);
     const expected = {
-      fileName: 'bye.txt', content: {
+      fileName: 'bye.txt', error: {
         name: 'fileReadError',
         message: "tail: bye.txt: No such file or directory",
-      }, isError: true
+      }
     };
     assert.deepStrictEqual(actual, expected);
   });

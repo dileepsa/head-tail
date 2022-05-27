@@ -5,10 +5,17 @@ const { display } = require('./display.js');
 const createErrorObj = (name, message) => {
   return { name, message };
 };
+const identity = ({ content }) => content;
+
+const decideFormatter = fileNames => fileNames.length < 2 ? identity : format;
 
 const format = ({ content, fileName }) => `==> ${fileName} <==\n${content}\n`;
 
 const extract = (lines, count) => lines.slice(0, count);
+
+const hasError = ({ error }) => error;
+
+const getExitCode = headResults => headResults.some(hasError) ? 1 : 0;
 
 const head = (content, count, separator) => {
   const allLines = splitLines(content, separator);
@@ -19,40 +26,30 @@ const head = (content, count, separator) => {
 const selectSeperator = (option) => option === '-c' ? '' : '\n';
 
 const headOfFile = (readFile, fileName, option, separator) => {
-  const result = {};
-  result.fileName = fileName;
-  result.isError = false;
+  let fileContent;
   try {
-    result.content = readFile(fileName, 'utf-8');
+    fileContent = readFile(fileName, 'utf-8');
   } catch (err) {
-    result.isError = true;
-    result.content = createErrorObj('fileReadError',
+    const error = createErrorObj('fileReadError',
       `head: ${fileName}: No such file or directory`);
-    return result;
+    return { error, fileName };
   }
-  result.content = head(result.content, option.value, separator);
-  return result;
+  const content = head(fileContent, option.value, separator);
+  return { content, fileName };
 };
-
-const identity = ({ content }) => content;
-
-const decideFormatter = fileNames => fileNames.length < 2 ? identity : format;
 
 const headFiles = (readFile, fileNames, option) => {
   const seperator = selectSeperator(option.name);
   const formatter = decideFormatter(fileNames);
   return fileNames.map((fileName) => {
     const record = headOfFile(readFile, fileName, option, seperator);
-    if (record.isError) {
+    if (record.error) {
       return record;
     }
     record.content = formatter(record, record.fileName);
     return record;
   });
 };
-
-const getExitCode = headResults => + headResults.some(
-  ({ isError }) => isError);
 
 const headMain = (readFile, log, error, cmdArgs) => {
   const args = seperateArgs(cmdArgs);
