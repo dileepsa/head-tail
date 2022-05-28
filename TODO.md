@@ -48,7 +48,6 @@
 - **WORKING:**
 
 - **TODO:**
-  - [ ] put separation of args in `parseArgs`.
   - [ ] Catch the error in `headOfFiles` and then decide the message.
   - [ ] Extract `readFile` from `headOfFile`.
   - [ ] Extract a function from `display`.
@@ -61,6 +60,7 @@
 
 
 - **DONE:**
+  - [x] put separation of args in `parseArgs`.
   - [x] Remove assertEmpty in validate.
   - [x] Extract `formatting` from `heaFiles`.
   - [x] Separate tests of `headLib` from `headMain`.

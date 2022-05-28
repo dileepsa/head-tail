@@ -11,13 +11,29 @@ describe('parseArgs', () => {
     assert.deepStrictEqual(actual, expected);
   });
 
+  it('Should parse the args when -n10 is given', () => {
+    const actual = parseArgs(['-n10', 'wish.txt']);
+    const expected = {
+      option: { name: '-n', value: 10 }, fileNames: ['wish.txt']
+    };
+    assert.deepStrictEqual(actual, expected);
+  });
+
+  it('Should parse the args when -c10 is given', () => {
+    const actual = parseArgs(['-c10', 'wish.txt']);
+    const expected = {
+      option: { name: '-c', value: 10 }, fileNames: ['wish.txt']
+    };
+    assert.deepStrictEqual(actual, expected);
+  });
+
   it('Should parse for -c option', () => {
     const actual = parseArgs(['-c', '10', 'wish.txt']);
     const expected = { option: { name: '-c', value: 10 }, fileNames: ['wish.txt'] };
     assert.deepStrictEqual(actual, expected);
   });
 
-  it('Should return only filenames', () => {
+  it('Should return filenames with default option', () => {
     let actual = parseArgs(['wish.txt']);
     let expected = { option: { name: '-n', value: 10 }, fileNames: ['wish.txt'] };
     assert.deepStrictEqual(actual, expected);

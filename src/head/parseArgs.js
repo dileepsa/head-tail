@@ -42,7 +42,8 @@ const parser = argsIterator => {
   return { fileNames, options };
 };
 
-const parseArgs = args => {
+const parseArgs = cmdArgs => {
+  const args = seperateArgs(cmdArgs);
   const argsIterator = createIterator(args);
   const { fileNames, options } = parser(argsIterator);
   validateArgs({ fileNames, options });

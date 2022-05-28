@@ -1,4 +1,4 @@
-const { parseArgs, seperateArgs } = require('./parseArgs.js');
+const { parseArgs } = require('./parseArgs.js');
 const { display } = require('./display.js');
 
 const createErrorObj = (name, message) => {
@@ -48,8 +48,7 @@ const headFiles = (readFile, fileNames, option) => {
 };
 
 const headMain = (readFile, log, error, cmdArgs) => {
-  const args = seperateArgs(cmdArgs);
-  const { fileNames, option } = parseArgs(args);
+  const { fileNames, option } = parseArgs(cmdArgs);
   const headResults = headFiles(readFile, fileNames, option);
   const formatter = decideFormatter(fileNames);
   headResults.forEach((result) => display(log, error, result, formatter));
