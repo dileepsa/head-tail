@@ -38,7 +38,8 @@ describe('headOfFile', () => {
   it('Should return content record', () => {
     const mockedReadFile = mockReadFile(['a.txt'], ['hi'], 'utf-8');
     const option = { name: '-n', value: 1 };
-    const actual = headOfFile(mockedReadFile, 'a.txt', option, '\n');
+    const fnToCall = (x) => x;
+    const actual = headOfFile(mockedReadFile, 'a.txt', option, fnToCall);
     const expected =
       { content: 'hi', fileName: 'a.txt' };
     assert.deepStrictEqual(actual, expected);

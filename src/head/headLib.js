@@ -1,4 +1,3 @@
-const { splitLines, joinLines } = require('./stringUtils.js');
 const { parseArgs, seperateArgs } = require('./parseArgs.js');
 const { display } = require('./display.js');
 
@@ -11,21 +10,20 @@ const decideFormatter = fileNames => fileNames.length < 2 ? identity : format;
 
 const format = ({ content, fileName }) => `==> ${fileName} <==\n${content}\n`;
 
-const extract = (lines, count) => lines.slice(0, count);
-
 const hasError = ({ error }) => error;
 
 const getExitCode = headResults => headResults.some(hasError) ? 1 : 0;
 
-const head = (content, count, separator) => {
-  const allLines = splitLines(content, separator);
-  const lines = extract(allLines, count);
-  return joinLines(lines, separator);
+const getChars = (content, count) => {
+  return content.slice(0, count);
 };
 
-const selectSeperator = (option) => option === '-c' ? '' : '\n';
+const getLines = (content, count) => {
+  const lines = content.split('\n');
+  return lines.slice(0, count).join('\n');
+};
 
-const headOfFile = (readFile, fileName, option, separator) => {
+const headOfFile = (readFile, fileName, option, fnToCall) => {
   let fileContent;
   try {
     fileContent = readFile(fileName, 'utf-8');
@@ -34,15 +32,15 @@ const headOfFile = (readFile, fileName, option, separator) => {
       `head: ${fileName}: No such file or directory`);
     return { error, fileName };
   }
-  const content = head(fileContent, option.value, separator);
+  const content = fnToCall(fileContent, option.value);
   return { content, fileName };
 };
 
 const headFiles = (readFile, fileNames, option) => {
-  const seperator = selectSeperator(option.name);
+  const fnToCall = option.name === '-n' ? getLines : getChars;
   const formatter = decideFormatter(fileNames);
   return fileNames.map((fileName) => {
-    const record = headOfFile(readFile, fileName, option, seperator);
+    const record = headOfFile(readFile, fileName, option, fnToCall);
     if (record.error) {
       return record;
     }
@@ -59,10 +57,10 @@ const headMain = (readFile, log, error, cmdArgs) => {
   return getExitCode(headResults);
 };
 
-exports.head = head;
-exports.extract = extract;
 exports.headMain = headMain;
 exports.headFiles = headFiles;
 exports.headOfFile = headOfFile;
 exports.createErrorObj = createErrorObj;
 exports.getExitCode = getExitCode;
+exports.getLines = getLines;
+exports.getChars = getChars;

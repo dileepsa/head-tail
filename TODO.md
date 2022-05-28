@@ -48,12 +48,13 @@
 - **WORKING:**
 
 - **TODO:**
+  - [ ] Separate tests of `headLib` from `headMain`.
   - [ ] Dont format in `headFiles`.
+  - [ ] Rename seperator to `separator`.
   - [ ] Catch the error in `headOfFiles` and then decide the message.
   - [ ] Extract `readFile` from `headOfFile`.
   - [ ] Extract a function from `display`.
   - [ ] Use tryCatch in `headMain` to catch error of parseArgs.
-  - [ ] Use seperate functions for `line` and `byte` counts.
   - [ ] Write tests for `validators`.
 - **MUST:**
   - [ ] Review code after function becomes 4 lines.
@@ -62,6 +63,8 @@
 
 
 - **DONE:**
+  - [x] Add tests for `getLines` and `getChars`.
+  - [x] Use seperate functions for `line` and `byte` counts.
   - [x] Change the data strcuture in `headOfFile`.
   - [x] Extract `hasError` function from `getExitCode`.
   - [x] Dont format when file length is 1.

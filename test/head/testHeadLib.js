@@ -1,53 +1,38 @@
 const assert = require('assert');
-const { head, extract } = require('../../src/head/headLib.js');
+const { getChars, getLines } = require('../../src/head/headLib.js');
 const { splitLines, joinLines } = require('../../src/head/stringUtils.js');
 
-describe('head', () => {
-  it('Should give 1 line', () => {
-    assert.deepStrictEqual(head('hi', 1, '\n'), 'hi');
-    assert.deepStrictEqual(head('hello', 1, '\n'), 'hello');
+describe('getLines', () => {
+  it('Should return one line from 2 lines', () => {
+    const actual = getLines('hi\nbye', 1);
+    assert.strictEqual(actual, 'hi');
   });
 
-  it('Should give 2 lines', () => {
-    assert.deepStrictEqual(head('hi\nhello', 2, '\n'), 'hi\nhello');
-    assert.deepStrictEqual(head('hi\nhello\nbye', 2, '\n'), 'hi\nhello');
+  it('Should return two lines from 2 lines', () => {
+    const actual = getLines('hi\nbye', 2);
+    assert.strictEqual(actual, 'hi\nbye');
   });
 
-  it('Should give 3 lines', () => {
-    assert.deepStrictEqual(head('hi\nhello\nbye', 3, '\n'), 'hi\nhello\nbye');
-    assert.deepStrictEqual(head('hi\nhello\nbye\nhi', 3, '\n'), 'hi\nhello\nbye');
-  });
-
-  it('Should give 1 character', () => {
-    assert.deepStrictEqual(head('hi', 1, ''), 'h');
-    assert.deepStrictEqual(head('bye', 1, ''), 'b');
-  });
-
-  it('Should give 2 characters', () => {
-    assert.deepStrictEqual(head('hi', 2, ''), 'hi');
-    assert.deepStrictEqual(head('bye', 2, ''), 'by');
-  });
-
-  it('Should give all lines when the count is greater than lines', () => {
-    assert.equal(head('hi\nhello', 3, '\n'), 'hi\nhello');
-    assert.equal(head('hi\nhello\nbye', 4, '\n'), 'hi\nhello\nbye');
+  it('Should return all lines when count is 3', () => {
+    const actual = getLines('hi\nbye', 3);
+    assert.strictEqual(actual, 'hi\nbye');
   });
 });
 
-describe('extractLines', () => {
-  it('Should give 1 line', () => {
-    assert.deepStrictEqual(extract(['hi'], 1), ['hi']);
-    assert.deepStrictEqual(extract(['hello'], 1), ['hello']);
+describe('getChars', () => {
+  it('Should return one character', () => {
+    const actual = getChars('h', 1);
+    assert.strictEqual(actual, 'h');
   });
 
-  it('Should return array back when count is greater than lines length', () => {
-    assert.deepStrictEqual(extract(['hi', 'bye'], 3), ['hi', 'bye']);
-    assert.deepStrictEqual(extract(['a', 'b', 'c'], 4), ['a', 'b', 'c']);
+  it('Should return two characters from 3 characters', () => {
+    const actual = getChars('bye', 2);
+    assert.strictEqual(actual, 'by');
   });
 
-  it('Should give 2 lines', () => {
-    assert.deepStrictEqual(extract(['hi', 'bye'], 2), ['hi', 'bye']);
-    assert.deepStrictEqual(extract(['hi', 'bye', 'h'], 2), ['hi', 'bye']);
+  it('Should return all characters when count is 4', () => {
+    const actual = getChars('bye', 4);
+    assert.strictEqual(actual, 'bye');
   });
 });
 
