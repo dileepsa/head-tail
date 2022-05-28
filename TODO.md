@@ -48,7 +48,7 @@
 - **WORKING:**
 
 - **TODO:**
-  - [ ] Separate tests of `headLib` from `headMain`.
+  - [ ] Remove assertEmpty in validate.
   - [ ] Dont format in `headFiles`.
   - [ ] Rename seperator to `separator`.
   - [ ] Catch the error in `headOfFiles` and then decide the message.
@@ -63,6 +63,7 @@
 
 
 - **DONE:**
+  - [x] Separate tests of `headLib` from `headMain`.
   - [x] Add tests for `getLines` and `getChars`.
   - [x] Use seperate functions for `line` and `byte` counts.
   - [x] Change the data strcuture in `headOfFile`.
