@@ -6,9 +6,13 @@ const createErrorObj = (name, message) => {
 };
 const identity = ({ content }) => content;
 
-const decideFormatter = fileNames => fileNames.length < 2 ? identity : format;
+const decideFormatter = fileNames => {
+  return fileNames.length < 2 ? identity : addHeader;
+};
 
-const format = ({ content, fileName }) => `==> ${fileName} <==\n${content}\n`;
+const addHeader = ({ content, fileName }) => {
+  return `==> ${fileName} <==\n${content}\n`;
+};
 
 const hasError = ({ error }) => error;
 

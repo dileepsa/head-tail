@@ -54,15 +54,8 @@ const assertInvalidCombination = (flag1, flag2) => {
   }
 };
 
-const assertEmpty = (args) => {
-  if (isEmpty(args.fileNames) && isEmpty(args.options)) {
-    throw error('invalidOptions', usage());
-  }
-};
-
 const validateArgs = (args) => {
   const options = args.options;
-  assertEmpty(args);
   assertFiles(args.fileNames);
   if (options.length < 1) {
     return;
