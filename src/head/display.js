@@ -1,11 +1,9 @@
-const display = (log, error, contents) => {
-  contents.forEach((record) => {
-    if (record.error) {
-      error(record.error.message);
-      return;
-    }
-    log(record.content);
-  });
+const display = (log, error, result, formatter) => {
+  if (result.error) {
+    error(result.error.message);
+    return;
+  }
+  log(formatter(result));
 };
 
 exports.display = display;

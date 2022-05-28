@@ -15,33 +15,17 @@ describe('display', () => {
   it('Should display to output stream ', () => {
     const mockedLog = mockConsole(['hi']);
     const mockedError = mockConsole(['hi']);
-    const contents = [{ content: 'hi' }];
-    display(mockedLog, mockedError, contents);
+    const contents = { content: 'hi' };
+    const fn = ({ content }) => content;
+    display(mockedLog, mockedError, contents, fn);
     assert.strictEqual(mockedLog.count, 1);
-  });
-
-  it('Should display 2 elements to output stream ', () => {
-    const mockedLog = mockConsole(['hi', 'bye']);
-    const mockedError = mockConsole([]);
-    const contents = [{ content: 'hi' }, { content: 'bye' }];
-    display(mockedLog, mockedError, contents);
-    assert.deepStrictEqual(mockedLog.count, 2);
   });
 
   it('Should display to error stream ', () => {
     const mockedLog = mockConsole([]);
-    const mockedError = mockConsole(['hi', 'bye']);
-    const contents = [{ error: { message: 'hi' } }];
+    const mockedError = mockConsole(['hi']);
+    const contents = { error: { message: 'hi' } };
     display(mockedLog, mockedError, contents);
-    assert.deepStrictEqual(mockedError.count, 1);
-  });
-
-  it('Should display error and output stream ', () => {
-    const mockedLog = mockConsole(['hi']);
-    const mockedError = mockConsole(['bye']);
-    const contents = [{ content: 'hi' }, { error: { message: 'bye' }, isError: true }];
-    display(mockedLog, mockedError, contents);
-    assert.deepStrictEqual(mockedLog.count, 1);
     assert.deepStrictEqual(mockedError.count, 1);
   });
 });

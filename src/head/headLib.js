@@ -38,14 +38,8 @@ const headOfFile = (readFile, fileName, option, fnToCall) => {
 
 const headFiles = (readFile, fileNames, option) => {
   const fnToCall = option.name === '-n' ? getLines : getChars;
-  const formatter = decideFormatter(fileNames);
   return fileNames.map((fileName) => {
-    const record = headOfFile(readFile, fileName, option, fnToCall);
-    if (record.error) {
-      return record;
-    }
-    record.content = formatter(record, record.fileName);
-    return record;
+    return headOfFile(readFile, fileName, option, fnToCall);
   });
 };
 
@@ -53,7 +47,8 @@ const headMain = (readFile, log, error, cmdArgs) => {
   const args = seperateArgs(cmdArgs);
   const { fileNames, option } = parseArgs(args);
   const headResults = headFiles(readFile, fileNames, option);
-  display(log, error, headResults);
+  const formatter = decideFormatter(fileNames);
+  headResults.forEach((result) => display(log, error, result, formatter));
   return getExitCode(headResults);
 };
 

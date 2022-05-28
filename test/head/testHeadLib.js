@@ -71,13 +71,14 @@ describe('headFiles', () => {
       ;
     assert.deepStrictEqual(actual, expected);
   });
+
   it('Should return content records when multiple fileName are given', () => {
     const mockedReadFile = mockReadFile(['a.txt', 'b.txt'], ['hi', 'bye'], 'utf-8');
     const option = { name: '-n', value: 1 };
     const actual = headFiles(mockedReadFile, ['a.txt', 'b.txt'], option);
     const expected = [
-      { content: '==> a.txt <==\nhi\n', fileName: 'a.txt' },
-      { content: '==> b.txt <==\nbye\n', fileName: 'b.txt' }
+      { content: 'hi', fileName: 'a.txt' },
+      { content: 'bye', fileName: 'b.txt' }
     ];
     assert.deepStrictEqual(actual, expected);
   });
@@ -98,7 +99,7 @@ describe('headFiles', () => {
     const option = { name: '-n', value: 1 };
     const actual = headFiles(mockedReadFile, ['a.txt', 'bye.txt'], option);
     const expected = [
-      { content: '==> a.txt <==\nhi\n', fileName: 'a.txt' },
+      { content: 'hi', fileName: 'a.txt' },
       {
         error: createErrorObj('fileReadError', "head: bye.txt: No such file or directory"),
         fileName: 'bye.txt'

@@ -1,7 +1,7 @@
 const { parseArgs } = require("./parseArgs");
 const { parseOptions } = require('./tailOptions.js');
 const { format } = require('./format.js');
-const { display } = require('../head/display.js');
+const { display } = require('./display.js');
 const { seperateArgs } = require("../head/parseArgs.js");
 
 const createErrorObj = (name, message) => {

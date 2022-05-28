@@ -17,7 +17,7 @@ describe('headMain', () => {
   it('Should return 0 when there are no errors', () => {
     const mockedReadFile = mockReadFile(['hi.txt'], ['hi'], 'utf-8');
     const mockedLog = mockConsole(['hi']);
-    const mockedError = mockConsole(['bye']);
+    const mockedError = mockConsole([]);
     const args = ['hi.txt'];
     const actual = headMain(mockedReadFile, mockedLog, mockedError, args);
     assert.strictEqual(actual, 0);

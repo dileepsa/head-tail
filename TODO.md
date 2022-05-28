@@ -49,8 +49,6 @@
 
 - **TODO:**
   - [ ] Remove assertEmpty in validate.
-  - [ ] Dont format in `headFiles`.
-  - [ ] Rename seperator to `separator`.
   - [ ] Catch the error in `headOfFiles` and then decide the message.
   - [ ] Extract `readFile` from `headOfFile`.
   - [ ] Extract a function from `display`.
@@ -63,6 +61,7 @@
 
 
 - **DONE:**
+  - [x] Extract `formatting` from `heaFiles`.
   - [x] Separate tests of `headLib` from `headMain`.
   - [x] Add tests for `getLines` and `getChars`.
   - [x] Use seperate functions for `line` and `byte` counts.
